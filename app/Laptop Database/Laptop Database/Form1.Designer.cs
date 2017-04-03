@@ -35,23 +35,12 @@
             this.pictureBox_Add = new System.Windows.Forms.PictureBox();
             this.pictureBox_Search = new System.Windows.Forms.PictureBox();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPage_About = new System.Windows.Forms.TabPage();
-            this.panel_CodeCreator = new System.Windows.Forms.Panel();
-            this.pictureBox_CodeCreator = new System.Windows.Forms.PictureBox();
-            this.label_CodeCreatorName = new System.Windows.Forms.Label();
-            this.label_CodeCreator = new System.Windows.Forms.Label();
-            this.panel_DesignCreator = new System.Windows.Forms.Panel();
-            this.pictureBox_DesignCreator = new System.Windows.Forms.PictureBox();
-            this.label_DesignCreatorName = new System.Windows.Forms.Label();
-            this.label_DesignCreator = new System.Windows.Forms.Label();
-            this.panel_DatabaseCreator = new System.Windows.Forms.Panel();
-            this.pictureBox_DatabaseCreator = new System.Windows.Forms.PictureBox();
-            this.label_DatabaseCreatorName = new System.Windows.Forms.Label();
-            this.label_DatabaseCreator = new System.Windows.Forms.Label();
-            this.tabPage_Search = new System.Windows.Forms.TabPage();
             this.tabPage_Add = new System.Windows.Forms.TabPage();
-            this.dataGridView_Search = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label_Result = new System.Windows.Forms.Label();
+            this.panel_Add_DragAndDrop = new System.Windows.Forms.Panel();
+            this.tabPage_Search = new System.Windows.Forms.TabPage();
+            this.dataGridView_Search = new System.Windows.Forms.DataGridView();
             this.product_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sceen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resolution = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,13 +55,31 @@
             this.drive_capacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label_TotalResults = new System.Windows.Forms.Label();
+            this.inconsistent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel_Search_Top = new System.Windows.Forms.Panel();
+            this.tabPage_About = new System.Windows.Forms.TabPage();
+            this.panel_CodeCreator = new System.Windows.Forms.Panel();
+            this.pictureBox_CodeCreator = new System.Windows.Forms.PictureBox();
+            this.label_CodeCreatorName = new System.Windows.Forms.Label();
+            this.label_CodeCreator = new System.Windows.Forms.Label();
+            this.panel_DesignCreator = new System.Windows.Forms.Panel();
+            this.pictureBox_DesignCreator = new System.Windows.Forms.PictureBox();
+            this.label_DesignCreatorName = new System.Windows.Forms.Label();
+            this.label_DesignCreator = new System.Windows.Forms.Label();
+            this.panel_DatabaseCreator = new System.Windows.Forms.Panel();
+            this.pictureBox_DatabaseCreator = new System.Windows.Forms.PictureBox();
+            this.label_DatabaseCreatorName = new System.Windows.Forms.Label();
+            this.label_DatabaseCreator = new System.Windows.Forms.Label();
             this.panel_Menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_About)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Add)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Search)).BeginInit();
             this.tabControl.SuspendLayout();
+            this.tabPage_Add.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tabPage_Search.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Search)).BeginInit();
             this.tabPage_About.SuspendLayout();
             this.panel_CodeCreator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_CodeCreator)).BeginInit();
@@ -80,9 +87,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_DesignCreator)).BeginInit();
             this.panel_DatabaseCreator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_DatabaseCreator)).BeginInit();
-            this.tabPage_Search.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Search)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_Menu
@@ -136,6 +140,7 @@
             // 
             // pictureBox_Search
             // 
+            this.pictureBox_Search.BackColor = System.Drawing.Color.CornflowerBlue;
             this.pictureBox_Search.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_Search.Image")));
             this.pictureBox_Search.Location = new System.Drawing.Point(0, 122);
             this.pictureBox_Search.Name = "pictureBox_Search";
@@ -149,14 +154,213 @@
             // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.tabPage_Search);
             this.tabControl.Controls.Add(this.tabPage_Add);
+            this.tabControl.Controls.Add(this.tabPage_Search);
             this.tabControl.Controls.Add(this.tabPage_About);
             this.tabControl.Location = new System.Drawing.Point(151, -24);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(739, 472);
             this.tabControl.TabIndex = 1;
+            // 
+            // tabPage_Add
+            // 
+            this.tabPage_Add.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage_Add.BackgroundImage = global::Laptop_Database.Properties.Resources.CodeTranslation;
+            this.tabPage_Add.Controls.Add(this.panel1);
+            this.tabPage_Add.Controls.Add(this.panel_Add_DragAndDrop);
+            this.tabPage_Add.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Add.Name = "tabPage_Add";
+            this.tabPage_Add.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Add.Size = new System.Drawing.Size(731, 446);
+            this.tabPage_Add.TabIndex = 1;
+            this.tabPage_Add.Text = "tabPage_Add";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.label_Result);
+            this.panel1.Location = new System.Drawing.Point(16, 379);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(115, 49);
+            this.panel1.TabIndex = 3;
+            // 
+            // label_Result
+            // 
+            this.label_Result.AutoSize = true;
+            this.label_Result.BackColor = System.Drawing.Color.Transparent;
+            this.label_Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_Result.ForeColor = System.Drawing.SystemColors.Control;
+            this.label_Result.Location = new System.Drawing.Point(36, 17);
+            this.label_Result.Name = "label_Result";
+            this.label_Result.Size = new System.Drawing.Size(46, 16);
+            this.label_Result.TabIndex = 2;
+            this.label_Result.Text = "Result";
+            // 
+            // panel_Add_DragAndDrop
+            // 
+            this.panel_Add_DragAndDrop.BackColor = System.Drawing.Color.Transparent;
+            this.panel_Add_DragAndDrop.BackgroundImage = global::Laptop_Database.Properties.Resources.DragAndDrop;
+            this.panel_Add_DragAndDrop.Location = new System.Drawing.Point(16, 14);
+            this.panel_Add_DragAndDrop.Name = "panel_Add_DragAndDrop";
+            this.panel_Add_DragAndDrop.Size = new System.Drawing.Size(700, 348);
+            this.panel_Add_DragAndDrop.TabIndex = 0;
+            // 
+            // tabPage_Search
+            // 
+            this.tabPage_Search.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage_Search.Controls.Add(this.dataGridView_Search);
+            this.tabPage_Search.Controls.Add(this.panel_Search_Top);
+            this.tabPage_Search.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Search.Name = "tabPage_Search";
+            this.tabPage_Search.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Search.Size = new System.Drawing.Size(731, 446);
+            this.tabPage_Search.TabIndex = 0;
+            this.tabPage_Search.Text = "tabPage_Search";
+            // 
+            // dataGridView_Search
+            // 
+            this.dataGridView_Search.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView_Search.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView_Search.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView_Search.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Search.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.product_number,
+            this.sceen,
+            this.resolution,
+            this.os,
+            this.gpu,
+            this.cpu,
+            this.cpu_cores,
+            this.ram,
+            this.ram_type,
+            this.ram_freq,
+            this.drive,
+            this.drive_capacity,
+            this.size,
+            this.weight,
+            this.inconsistent});
+            this.dataGridView_Search.Location = new System.Drawing.Point(0, 146);
+            this.dataGridView_Search.Name = "dataGridView_Search";
+            this.dataGridView_Search.ReadOnly = true;
+            this.dataGridView_Search.RowHeadersVisible = false;
+            this.dataGridView_Search.Size = new System.Drawing.Size(729, 296);
+            this.dataGridView_Search.TabIndex = 0;
+            // 
+            // product_number
+            // 
+            this.product_number.HeaderText = "Product Number";
+            this.product_number.Name = "product_number";
+            this.product_number.ReadOnly = true;
+            // 
+            // sceen
+            // 
+            this.sceen.HeaderText = "Screen";
+            this.sceen.Name = "sceen";
+            this.sceen.ReadOnly = true;
+            this.sceen.Width = 66;
+            // 
+            // resolution
+            // 
+            this.resolution.HeaderText = "Resolution";
+            this.resolution.Name = "resolution";
+            this.resolution.ReadOnly = true;
+            this.resolution.Width = 82;
+            // 
+            // os
+            // 
+            this.os.HeaderText = "OS";
+            this.os.Name = "os";
+            this.os.ReadOnly = true;
+            this.os.Width = 47;
+            // 
+            // gpu
+            // 
+            this.gpu.HeaderText = "GPU";
+            this.gpu.Name = "gpu";
+            this.gpu.ReadOnly = true;
+            this.gpu.Width = 55;
+            // 
+            // cpu
+            // 
+            this.cpu.HeaderText = "CPU";
+            this.cpu.Name = "cpu";
+            this.cpu.ReadOnly = true;
+            this.cpu.Width = 54;
+            // 
+            // cpu_cores
+            // 
+            this.cpu_cores.HeaderText = "Cores";
+            this.cpu_cores.Name = "cpu_cores";
+            this.cpu_cores.ReadOnly = true;
+            this.cpu_cores.Width = 59;
+            // 
+            // ram
+            // 
+            this.ram.HeaderText = "RAM";
+            this.ram.Name = "ram";
+            this.ram.ReadOnly = true;
+            this.ram.Width = 56;
+            // 
+            // ram_type
+            // 
+            this.ram_type.HeaderText = "Type";
+            this.ram_type.Name = "ram_type";
+            this.ram_type.ReadOnly = true;
+            this.ram_type.Width = 56;
+            // 
+            // ram_freq
+            // 
+            this.ram_freq.HeaderText = "Frequency";
+            this.ram_freq.Name = "ram_freq";
+            this.ram_freq.ReadOnly = true;
+            this.ram_freq.Width = 82;
+            // 
+            // drive
+            // 
+            this.drive.HeaderText = "Drive";
+            this.drive.Name = "drive";
+            this.drive.ReadOnly = true;
+            this.drive.Width = 57;
+            // 
+            // drive_capacity
+            // 
+            this.drive_capacity.HeaderText = "Capacity";
+            this.drive_capacity.Name = "drive_capacity";
+            this.drive_capacity.ReadOnly = true;
+            this.drive_capacity.Width = 73;
+            // 
+            // size
+            // 
+            this.size.HeaderText = "Size";
+            this.size.Name = "size";
+            this.size.ReadOnly = true;
+            this.size.Width = 52;
+            // 
+            // weight
+            // 
+            this.weight.HeaderText = "Weight";
+            this.weight.Name = "weight";
+            this.weight.ReadOnly = true;
+            this.weight.Width = 66;
+            // 
+            // inconsistent
+            // 
+            this.inconsistent.HeaderText = "Inconsistent";
+            this.inconsistent.Name = "inconsistent";
+            this.inconsistent.ReadOnly = true;
+            this.inconsistent.Width = 89;
+            // 
+            // panel_Search_Top
+            // 
+            this.panel_Search_Top.BackColor = System.Drawing.SystemColors.Control;
+            this.panel_Search_Top.BackgroundImage = global::Laptop_Database.Properties.Resources.CodeTranslation;
+            this.panel_Search_Top.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel_Search_Top.Location = new System.Drawing.Point(0, 2);
+            this.panel_Search_Top.Name = "panel_Search_Top";
+            this.panel_Search_Top.Size = new System.Drawing.Size(731, 146);
+            this.panel_Search_Top.TabIndex = 6;
             // 
             // tabPage_About
             // 
@@ -305,158 +509,6 @@
             this.label_DatabaseCreator.TabIndex = 4;
             this.label_DatabaseCreator.Text = "Database";
             // 
-            // tabPage_Search
-            // 
-            this.tabPage_Search.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage_Search.Controls.Add(this.dataGridView_Search);
-            this.tabPage_Search.Controls.Add(this.panel1);
-            this.tabPage_Search.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_Search.Name = "tabPage_Search";
-            this.tabPage_Search.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Search.Size = new System.Drawing.Size(731, 446);
-            this.tabPage_Search.TabIndex = 0;
-            this.tabPage_Search.Text = "tabPage_Search";
-            // 
-            // tabPage_Add
-            // 
-            this.tabPage_Add.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage_Add.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_Add.Name = "tabPage_Add";
-            this.tabPage_Add.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Add.Size = new System.Drawing.Size(731, 446);
-            this.tabPage_Add.TabIndex = 1;
-            this.tabPage_Add.Text = "tabPage_Add";
-            // 
-            // dataGridView_Search
-            // 
-            this.dataGridView_Search.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView_Search.BackgroundColor = System.Drawing.SystemColors.ControlDark;
-            this.dataGridView_Search.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView_Search.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Search.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.product_number,
-            this.sceen,
-            this.resolution,
-            this.os,
-            this.gpu,
-            this.cpu,
-            this.cpu_cores,
-            this.ram,
-            this.ram_type,
-            this.ram_freq,
-            this.drive,
-            this.drive_capacity,
-            this.size,
-            this.weight});
-            this.dataGridView_Search.Location = new System.Drawing.Point(0, 146);
-            this.dataGridView_Search.Name = "dataGridView_Search";
-            this.dataGridView_Search.ReadOnly = true;
-            this.dataGridView_Search.RowHeadersVisible = false;
-            this.dataGridView_Search.Size = new System.Drawing.Size(729, 296);
-            this.dataGridView_Search.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.label_TotalResults);
-            this.panel1.Location = new System.Drawing.Point(0, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(731, 146);
-            this.panel1.TabIndex = 6;
-            // 
-            // product_number
-            // 
-            this.product_number.HeaderText = "Product Number";
-            this.product_number.Name = "product_number";
-            this.product_number.ReadOnly = true;
-            // 
-            // sceen
-            // 
-            this.sceen.HeaderText = "Screen";
-            this.sceen.Name = "sceen";
-            this.sceen.ReadOnly = true;
-            // 
-            // resolution
-            // 
-            this.resolution.HeaderText = "Resolution";
-            this.resolution.Name = "resolution";
-            this.resolution.ReadOnly = true;
-            // 
-            // os
-            // 
-            this.os.HeaderText = "OS";
-            this.os.Name = "os";
-            this.os.ReadOnly = true;
-            // 
-            // gpu
-            // 
-            this.gpu.HeaderText = "GPU";
-            this.gpu.Name = "gpu";
-            this.gpu.ReadOnly = true;
-            // 
-            // cpu
-            // 
-            this.cpu.HeaderText = "CPU";
-            this.cpu.Name = "cpu";
-            this.cpu.ReadOnly = true;
-            // 
-            // cpu_cores
-            // 
-            this.cpu_cores.HeaderText = "Cores";
-            this.cpu_cores.Name = "cpu_cores";
-            this.cpu_cores.ReadOnly = true;
-            // 
-            // ram
-            // 
-            this.ram.HeaderText = "RAM";
-            this.ram.Name = "ram";
-            this.ram.ReadOnly = true;
-            // 
-            // ram_type
-            // 
-            this.ram_type.HeaderText = "Type";
-            this.ram_type.Name = "ram_type";
-            this.ram_type.ReadOnly = true;
-            // 
-            // ram_freq
-            // 
-            this.ram_freq.HeaderText = "Frequency";
-            this.ram_freq.Name = "ram_freq";
-            this.ram_freq.ReadOnly = true;
-            // 
-            // drive
-            // 
-            this.drive.HeaderText = "Drive";
-            this.drive.Name = "drive";
-            this.drive.ReadOnly = true;
-            // 
-            // drive_capacity
-            // 
-            this.drive_capacity.HeaderText = "Capacity";
-            this.drive_capacity.Name = "drive_capacity";
-            this.drive_capacity.ReadOnly = true;
-            // 
-            // size
-            // 
-            this.size.HeaderText = "Size";
-            this.size.Name = "size";
-            this.size.ReadOnly = true;
-            // 
-            // weight
-            // 
-            this.weight.HeaderText = "Weight";
-            this.weight.Name = "weight";
-            this.weight.ReadOnly = true;
-            // 
-            // label_TotalResults
-            // 
-            this.label_TotalResults.AutoSize = true;
-            this.label_TotalResults.Location = new System.Drawing.Point(112, 38);
-            this.label_TotalResults.Name = "label_TotalResults";
-            this.label_TotalResults.Size = new System.Drawing.Size(94, 13);
-            this.label_TotalResults.TabIndex = 0;
-            this.label_TotalResults.Text = "label_TotalResults";
-            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -464,6 +516,7 @@
             this.ClientSize = new System.Drawing.Size(883, 439);
             this.Controls.Add(this.panel_Menu);
             this.Controls.Add(this.tabControl);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -475,6 +528,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Add)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Search)).EndInit();
             this.tabControl.ResumeLayout(false);
+            this.tabPage_Add.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.tabPage_Search.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Search)).EndInit();
             this.tabPage_About.ResumeLayout(false);
             this.panel_CodeCreator.ResumeLayout(false);
             this.panel_CodeCreator.PerformLayout();
@@ -485,10 +543,6 @@
             this.panel_DatabaseCreator.ResumeLayout(false);
             this.panel_DatabaseCreator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_DatabaseCreator)).EndInit();
-            this.tabPage_Search.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Search)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -516,7 +570,7 @@
         private System.Windows.Forms.PictureBox pictureBox_DesignCreator;
         private System.Windows.Forms.PictureBox pictureBox_DatabaseCreator;
         private System.Windows.Forms.DataGridView dataGridView_Search;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel_Search_Top;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_number;
         private System.Windows.Forms.DataGridViewTextBoxColumn sceen;
         private System.Windows.Forms.DataGridViewTextBoxColumn resolution;
@@ -531,7 +585,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn drive_capacity;
         private System.Windows.Forms.DataGridViewTextBoxColumn size;
         private System.Windows.Forms.DataGridViewTextBoxColumn weight;
-        private System.Windows.Forms.Label label_TotalResults;
+        private System.Windows.Forms.DataGridViewTextBoxColumn inconsistent;
+        private System.Windows.Forms.Label label_Result;
+        private System.Windows.Forms.Panel panel_Add_DragAndDrop;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
