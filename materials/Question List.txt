@@ -1,4 +1,0 @@
-Seznam otázek:
- - Pokud je celı záznam nekonzistentní (napøíklad seriové èíslo produktu souhlasí a zbytek ne), ukládat záznam, nebo neukládat?
- - Pokud je záznam nekonzistentní, zobrazovat informaci o nekonzistentních øádcích, nebo samostatnıch sloupích v øádku (hdd, gpu, ...)?
- - Kdy budou dostupná testovací data?
