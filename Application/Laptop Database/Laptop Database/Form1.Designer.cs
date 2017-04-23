@@ -154,8 +154,8 @@
             // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.tabPage_Add);
             this.tabControl.Controls.Add(this.tabPage_Search);
+            this.tabControl.Controls.Add(this.tabPage_Add);
             this.tabControl.Controls.Add(this.tabPage_About);
             this.tabControl.Location = new System.Drawing.Point(151, -24);
             this.tabControl.Name = "tabControl";
