@@ -31,6 +31,7 @@ namespace Laptop_Database
                     laptopList = DataParser.XML.Parse(filePath);
                     break;
                 case ".json":
+                    laptopList = DataParser.JSON.Parse(filePath);
                     break;
                 case ".csv":
                     laptopList = DataParser.CSV.Parse(filePath);

@@ -22,29 +22,31 @@ namespace Laptop_Database.DataParser
             foreach (XmlNode node in nodes)
             {
                 String serial = node.SelectSingleNode("serial").InnerText;
-                double screen = double.Parse(node.SelectSingleNode("screen").InnerText, CultureInfo.InvariantCulture);
+                String screen = node.SelectSingleNode("screen").InnerText;
                 String resolution = node.SelectSingleNode("resolution").InnerText;
                 String resolution_code = node.SelectSingleNode("resolution_code").InnerText;
                 String cpu = node.SelectSingleNode("cpu").InnerText;
-                int cores = Convert.ToInt32(node.SelectSingleNode("cores").InnerText);
+                String cores = node.SelectSingleNode("cores").InnerText;
                 String ram = node.SelectSingleNode("ram").InnerText;
-                double ram_type = double.Parse(node.SelectSingleNode("ram_type").InnerText, CultureInfo.InvariantCulture);
-                int ram_capacity = Convert.ToInt32(node.SelectSingleNode("ram_capacity").InnerText);
+                String ram_type = node.SelectSingleNode("ram_type").InnerText;
+                String ram_capacity = node.SelectSingleNode("ram_capacity").InnerText;
                 String os = node.SelectSingleNode("os").InnerText;
-                int hdd = Convert.ToInt32(node.SelectSingleNode("hdd").InnerText);
+                String hdd = node.SelectSingleNode("hdd").InnerText;
                 String hdd_type = node.SelectSingleNode("hdd_type").InnerText;
                 String gpu = node.SelectSingleNode("gpu").InnerText;
                 String color = node.SelectSingleNode("color").InnerText;
-                int height = Convert.ToInt32(node.SelectSingleNode("height").InnerText);
-                int width = Convert.ToInt32(node.SelectSingleNode("width").InnerText);
-                int depth = Convert.ToInt32(node.SelectSingleNode("depth").InnerText);
-                int weight = Convert.ToInt32(node.SelectSingleNode("weight").InnerText);
+                String height = node.SelectSingleNode("height").InnerText;
+                String width = node.SelectSingleNode("width").InnerText;
+                String depth = node.SelectSingleNode("depth").InnerText;
+                String weight = node.SelectSingleNode("weight").InnerText;
 
-                laptopList.Add(new Laptop(serial,
-                    new Display(screen, resolution, resolution_code),
-                    new CPU(cpu, cores), new RAM(ram, ram_type, ram_capacity),
-                    new OS(os), new HDD(hdd, hdd_type), new GPU(gpu),
-                    color, height, width, depth, weight));
+                Data raw = new Data(serial, screen, resolution,
+            resolution_code, cpu, cores, ram,
+            ram_type, ram_capacity, os, hdd,
+            hdd_type, gpu, color, height,
+            width, depth, weight);
+
+                laptopList.Add(new Laptop(raw));
             }
             return laptopList;
         }

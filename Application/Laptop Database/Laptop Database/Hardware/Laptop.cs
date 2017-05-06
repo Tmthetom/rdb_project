@@ -1,6 +1,7 @@
 ﻿using Laptop_Database.Hardware;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,5 +40,24 @@ namespace Laptop_Database.Hardware
             this.depth = depth;
             this.weight = weight;
         }
+
+        public Laptop(Data raw)
+        {
+            this.serial = raw.serial;
+            this.display = new Display(double.Parse(raw.screen, CultureInfo.InvariantCulture),
+                raw.resolution, raw.resolution_code);
+            this.cpu = new CPU(raw.cpu, Convert.ToInt32(raw.cores));
+            this.ram = new RAM(raw.ram, double.Parse(raw.ram_type, CultureInfo.InvariantCulture),
+                Convert.ToInt32(raw.ram_capacity));
+            this.os = new OS(raw.os);
+            this.hdd = new HDD(Convert.ToInt32(raw.hdd), raw.hdd_type);
+            this.gpu = new GPU(raw.gpu);
+            this.color = raw.color;
+            this.height = Convert.ToInt32(raw.height);
+            this.width = Convert.ToInt32(raw.width);
+            this.depth = Convert.ToInt32(raw.depth);
+            this.weight = Convert.ToInt32(raw.weight);
+        }
+
     }
 }
