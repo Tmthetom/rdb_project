@@ -17,6 +17,12 @@ namespace Laptop_Database
             InitializeComponent();
         }
 
+        void FileLoaded(string filePath)
+        {
+            // When drop or filedialog provide file, this method called
+            MessageBox.Show(filePath);
+        }
+
         #region User Interface
 
         #region Menu
@@ -50,7 +56,7 @@ namespace Laptop_Database
             Buttons_Click();
             pictureBox_Search.BackColor = color_Button_Actual;
         }
-        #endregion
+        #endregion Search button
 
         #region Add button
         private void Button_AddHover(object sender, EventArgs e)
@@ -77,7 +83,7 @@ namespace Laptop_Database
             Buttons_Click();
             pictureBox_Add.BackColor = color_Button_Actual;
         }
-        #endregion
+        #endregion Add button
 
         #region About button
         private void Button_AboutHover(object sender, EventArgs e)
@@ -104,7 +110,7 @@ namespace Laptop_Database
             Buttons_Click();
             pictureBox_About.BackColor = color_Button_Actual;
         }
-        #endregion
+        #endregion About button
 
         #region Buttons Click
 
@@ -115,12 +121,66 @@ namespace Laptop_Database
             pictureBox_About.BackColor = color_Button_Normal;
         }
 
-        #endregion
+        #endregion Buttons Click
+
+        #endregion Menu
+
+        #region Add
+
+        /// <summary>
+        /// When panel clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DragAndDrop_Click(object sender, EventArgs e)
+        {
+            // Show file dialog
+            DialogResult result = openFileDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                FileLoaded(openFileDialog.FileName);
+            }
+        }
+
+        /// <summary>
+        /// When file enter panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DragAndDrop_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;  // Enable DragAndDrop
+            panel_Add_DragAndDrop.BackColor = Color.GreenYellow;
+        }
+
+
+        /// <summary>
+        /// When file leave panel without drop
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DragAndDrop_DragLeave(object sender, EventArgs e)
+        {
+            panel_Add_DragAndDrop.BackColor = Color.Transparent;
+        }
+
+        /// <summary>
+        /// When file drop into panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DragAndDrop_DragDrop(object sender, DragEventArgs e)
+        {
+            // Save file path
+            string[] filePaths = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            openFileDialog.FileName = filePaths[0];
+            FileLoaded(openFileDialog.FileName);
+            panel_Add_DragAndDrop.BackColor = Color.Transparent;
+        }
+
+        #endregion Add
 
         #endregion
-
-        #endregion
-
 
     }
 }
