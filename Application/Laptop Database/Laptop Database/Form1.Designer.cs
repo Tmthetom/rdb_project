@@ -35,6 +35,10 @@
             this.pictureBox_Add = new System.Windows.Forms.PictureBox();
             this.pictureBox_Search = new System.Windows.Forms.PictureBox();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPage_Add = new System.Windows.Forms.TabPage();
+            this.panel_Result = new System.Windows.Forms.Panel();
+            this.label_Result = new System.Windows.Forms.Label();
+            this.panel_Add_DragAndDrop = new System.Windows.Forms.Panel();
             this.tabPage_Search = new System.Windows.Forms.TabPage();
             this.dataGridView_Search = new System.Windows.Forms.DataGridView();
             this.product_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,10 +57,6 @@
             this.weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inconsistent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel_Search_Top = new System.Windows.Forms.Panel();
-            this.tabPage_Add = new System.Windows.Forms.TabPage();
-            this.panel_Result = new System.Windows.Forms.Panel();
-            this.label_Result = new System.Windows.Forms.Label();
-            this.panel_Add_DragAndDrop = new System.Windows.Forms.Panel();
             this.tabPage_About = new System.Windows.Forms.TabPage();
             this.panel_CodeCreator = new System.Windows.Forms.Panel();
             this.pictureBox_CodeCreator = new System.Windows.Forms.PictureBox();
@@ -77,10 +77,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Add)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Search)).BeginInit();
             this.tabControl.SuspendLayout();
-            this.tabPage_Search.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Search)).BeginInit();
             this.tabPage_Add.SuspendLayout();
             this.panel_Result.SuspendLayout();
+            this.tabPage_Search.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Search)).BeginInit();
             this.tabPage_About.SuspendLayout();
             this.panel_CodeCreator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_CodeCreator)).BeginInit();
@@ -155,14 +155,63 @@
             // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.tabPage_Add);
             this.tabControl.Controls.Add(this.tabPage_Search);
+            this.tabControl.Controls.Add(this.tabPage_Add);
             this.tabControl.Controls.Add(this.tabPage_About);
             this.tabControl.Location = new System.Drawing.Point(151, -24);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(739, 472);
             this.tabControl.TabIndex = 1;
+            // 
+            // tabPage_Add
+            // 
+            this.tabPage_Add.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage_Add.BackgroundImage = global::Laptop_Database.Properties.Resources.CodeTranslation;
+            this.tabPage_Add.Controls.Add(this.panel_Result);
+            this.tabPage_Add.Controls.Add(this.panel_Add_DragAndDrop);
+            this.tabPage_Add.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Add.Name = "tabPage_Add";
+            this.tabPage_Add.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Add.Size = new System.Drawing.Size(731, 446);
+            this.tabPage_Add.TabIndex = 1;
+            this.tabPage_Add.Text = "tabPage_Add";
+            // 
+            // panel_Result
+            // 
+            this.panel_Result.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel_Result.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel_Result.Controls.Add(this.label_Result);
+            this.panel_Result.Location = new System.Drawing.Point(16, 379);
+            this.panel_Result.Name = "panel_Result";
+            this.panel_Result.Size = new System.Drawing.Size(115, 49);
+            this.panel_Result.TabIndex = 3;
+            // 
+            // label_Result
+            // 
+            this.label_Result.AutoSize = true;
+            this.label_Result.BackColor = System.Drawing.Color.Transparent;
+            this.label_Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_Result.ForeColor = System.Drawing.SystemColors.Control;
+            this.label_Result.Location = new System.Drawing.Point(36, 17);
+            this.label_Result.Name = "label_Result";
+            this.label_Result.Size = new System.Drawing.Size(46, 16);
+            this.label_Result.TabIndex = 2;
+            this.label_Result.Text = "Result";
+            // 
+            // panel_Add_DragAndDrop
+            // 
+            this.panel_Add_DragAndDrop.AllowDrop = true;
+            this.panel_Add_DragAndDrop.BackColor = System.Drawing.Color.Transparent;
+            this.panel_Add_DragAndDrop.BackgroundImage = global::Laptop_Database.Properties.Resources.DragAndDrop;
+            this.panel_Add_DragAndDrop.Location = new System.Drawing.Point(16, 14);
+            this.panel_Add_DragAndDrop.Name = "panel_Add_DragAndDrop";
+            this.panel_Add_DragAndDrop.Size = new System.Drawing.Size(700, 348);
+            this.panel_Add_DragAndDrop.TabIndex = 0;
+            this.panel_Add_DragAndDrop.Click += new System.EventHandler(this.DragAndDrop_Click);
+            this.panel_Add_DragAndDrop.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragAndDrop_DragDrop);
+            this.panel_Add_DragAndDrop.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragAndDrop_DragEnter);
+            this.panel_Add_DragAndDrop.DragLeave += new System.EventHandler(this.DragAndDrop_DragLeave);
             // 
             // tabPage_Search
             // 
@@ -318,55 +367,6 @@
             this.panel_Search_Top.Name = "panel_Search_Top";
             this.panel_Search_Top.Size = new System.Drawing.Size(731, 146);
             this.panel_Search_Top.TabIndex = 6;
-            // 
-            // tabPage_Add
-            // 
-            this.tabPage_Add.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage_Add.BackgroundImage = global::Laptop_Database.Properties.Resources.CodeTranslation;
-            this.tabPage_Add.Controls.Add(this.panel_Result);
-            this.tabPage_Add.Controls.Add(this.panel_Add_DragAndDrop);
-            this.tabPage_Add.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_Add.Name = "tabPage_Add";
-            this.tabPage_Add.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Add.Size = new System.Drawing.Size(731, 446);
-            this.tabPage_Add.TabIndex = 1;
-            this.tabPage_Add.Text = "tabPage_Add";
-            // 
-            // panel_Result
-            // 
-            this.panel_Result.BackColor = System.Drawing.SystemColors.Desktop;
-            this.panel_Result.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel_Result.Controls.Add(this.label_Result);
-            this.panel_Result.Location = new System.Drawing.Point(16, 379);
-            this.panel_Result.Name = "panel_Result";
-            this.panel_Result.Size = new System.Drawing.Size(115, 49);
-            this.panel_Result.TabIndex = 3;
-            // 
-            // label_Result
-            // 
-            this.label_Result.AutoSize = true;
-            this.label_Result.BackColor = System.Drawing.Color.Transparent;
-            this.label_Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_Result.ForeColor = System.Drawing.SystemColors.Control;
-            this.label_Result.Location = new System.Drawing.Point(36, 17);
-            this.label_Result.Name = "label_Result";
-            this.label_Result.Size = new System.Drawing.Size(46, 16);
-            this.label_Result.TabIndex = 2;
-            this.label_Result.Text = "Result";
-            // 
-            // panel_Add_DragAndDrop
-            // 
-            this.panel_Add_DragAndDrop.AllowDrop = true;
-            this.panel_Add_DragAndDrop.BackColor = System.Drawing.Color.Transparent;
-            this.panel_Add_DragAndDrop.BackgroundImage = global::Laptop_Database.Properties.Resources.DragAndDrop;
-            this.panel_Add_DragAndDrop.Location = new System.Drawing.Point(16, 14);
-            this.panel_Add_DragAndDrop.Name = "panel_Add_DragAndDrop";
-            this.panel_Add_DragAndDrop.Size = new System.Drawing.Size(700, 348);
-            this.panel_Add_DragAndDrop.TabIndex = 0;
-            this.panel_Add_DragAndDrop.Click += new System.EventHandler(this.DragAndDrop_Click);
-            this.panel_Add_DragAndDrop.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragAndDrop_DragDrop);
-            this.panel_Add_DragAndDrop.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragAndDrop_DragEnter);
-            this.panel_Add_DragAndDrop.DragLeave += new System.EventHandler(this.DragAndDrop_DragLeave);
             // 
             // tabPage_About
             // 
@@ -538,11 +538,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Add)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Search)).EndInit();
             this.tabControl.ResumeLayout(false);
-            this.tabPage_Search.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Search)).EndInit();
             this.tabPage_Add.ResumeLayout(false);
             this.panel_Result.ResumeLayout(false);
             this.panel_Result.PerformLayout();
+            this.tabPage_Search.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Search)).EndInit();
             this.tabPage_About.ResumeLayout(false);
             this.panel_CodeCreator.ResumeLayout(false);
             this.panel_CodeCreator.PerformLayout();
