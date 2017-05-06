@@ -28,19 +28,19 @@ namespace Laptop_Database
             switch (extension)
             {
                 case ".xml":
-                    var source = new BindingSource();
                     laptopList = DataParser.XML.Parse(filePath);
-                    source.DataSource = laptopList;
-                    dataGridView_Search.DataSource = source;
                     break;
                 case ".json":
                     break;
                 case ".csv":
+                    laptopList = DataParser.CSV.Parse(filePath);
                     break;
                 default:
                     break;
             }
-
+            var source = new BindingSource();
+            source.DataSource = laptopList;
+            dataGridView_Search.DataSource = source;
         }
 
         #region User Interface

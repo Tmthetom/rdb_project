@@ -12,10 +12,11 @@ namespace Laptop_Database.DataParser
 {
     class XML
     {
-        public static List<Laptop> Parse(String path) {
+        public static List<Laptop> Parse(String filePath)
+        {
             List<Laptop> laptopList = new List<Laptop>();
             XmlDocument document = new XmlDocument();
-            document.Load(path);
+            document.Load(filePath);
             XmlElement root = document.DocumentElement;
             XmlNodeList nodes = root.SelectNodes("computer");
             foreach (XmlNode node in nodes)
