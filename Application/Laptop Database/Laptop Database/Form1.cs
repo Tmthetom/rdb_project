@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Laptop_Database.Hardware;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,15 +14,33 @@ namespace Laptop_Database
 {
     public partial class Form : System.Windows.Forms.Form
     {
+        private List<Laptop> laptopList;
+
         public Form()
         {
             InitializeComponent();
+            dataGridView_Search.AutoGenerateColumns = false;
         }
 
         void FileLoaded(string filePath)
         {
-            // When drop or filedialog provide file, this method called
-            MessageBox.Show(filePath);
+            String extension = filePath.Substring(filePath.LastIndexOf("."), filePath.Length-filePath.LastIndexOf("."));
+            switch (extension)
+            {
+                case ".xml":
+                    var source = new BindingSource();
+                    laptopList = DataParser.XML.Parse(filePath);
+                    source.DataSource = laptopList;
+                    dataGridView_Search.DataSource = source;
+                    break;
+                case ".json":
+                    break;
+                case ".csv":
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         #region User Interface
@@ -179,6 +199,25 @@ namespace Laptop_Database
         }
 
         #endregion Add
+
+        private void dataGridView_Search_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridView grid = (DataGridView)sender;
+            DataGridViewRow row = grid.Rows[e.RowIndex];
+            DataGridViewColumn col = grid.Columns[e.ColumnIndex];
+            if (row.DataBoundItem != null && col.DataPropertyName.Contains("."))
+            {
+                string[] props = col.DataPropertyName.Split('.');
+                PropertyInfo propInfo = row.DataBoundItem.GetType().GetProperty(props[0]);
+                object val = propInfo.GetValue(row.DataBoundItem, null);
+                for (int i = 1; i < props.Length; i++)
+                {
+                    propInfo = val.GetType().GetProperty(props[i]);
+                    val = propInfo.GetValue(val, null);
+                }
+                e.Value = val;
+            }
+        }
 
         #endregion
 

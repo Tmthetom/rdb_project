@@ -45,12 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataParser\XML.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hardware\CPU.cs" />
+    <Compile Include="Hardware\Display.cs" />
+    <Compile Include="Hardware\GPU.cs" />
+    <Compile Include="Hardware\HDD.cs" />
+    <Compile Include="Hardware\Laptop.cs" />
+    <Compile Include="Hardware\OS.cs" />
+    <Compile Include="Hardware\RAM.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
