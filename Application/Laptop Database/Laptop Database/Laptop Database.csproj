@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\IDBConnector.cs" />
+    <Compile Include="Database\MSSQLConnector.cs" />
     <Compile Include="DataParser\CSV.cs" />
     <Compile Include="DataParser\JSON.cs" />
     <Compile Include="DataParser\XML.cs" />

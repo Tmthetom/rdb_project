@@ -18,14 +18,14 @@ namespace Laptop_Database.Hardware
         public HDD hdd { get; set; }
         public GPU gpu { get; set; }
         public String color { get; set; }
-        public int height { get; set; }
-        public int width { get; set; }
-        public int depth { get; set; }
-        public int weight { get; set; }
+        public float height { get; set; }
+        public float width { get; set; }
+        public float depth { get; set; }
+        public float weight { get; set; }
 
         public Laptop(String serial, Display display, CPU cpu,
             RAM ram, OS os, HDD hdd, GPU gpu, String color,
-            int height, int width, int depth, int weight)
+            float height, float width, float depth, float weight)
         {
             this.serial = serial;
             this.display = display;
