@@ -10,6 +10,7 @@ namespace Laptop_Database.Database
 {
     class MSSQLConnector : IDBConnector
     {
+        private List<string> messages = new List<string>();
         public override void createConnection()
         {
             if(server.Equals("") || database.Equals(""))
@@ -21,6 +22,7 @@ namespace Laptop_Database.Database
             try
             {
                 connection.Open();
+                connection.InfoMessage += new SqlInfoMessageEventHandler(Connection_InfoMessage);
                 success = true;
             }
             catch (SqlException ex)
@@ -165,16 +167,19 @@ namespace Laptop_Database.Database
             return laptops;
         }
 
-        public override void insert(List<Laptop> laptops, string hash)
+        public override List<string> insert(List<Laptop> laptops, string hash)
         {
+            messages.Clear();
             foreach(Hardware.Laptop laptop in laptops)
             {
                 insert(laptop, hash);
             }
+            return messages;
         }
 
-        public override void insert(Laptop laptop, string hash)
+        public override List<string> insert(Laptop laptop, string hash)
         {
+            messages.Clear();
             SqlCommand comm = new SqlCommand("INSERT INTO v_notebooks([hash],[producer_code],[color],[width],[height],"+
                                                                      "[depth],[weight],[display_diagonal],[display_width],"+
                                                                      "[display_height],[display_label],[cpu_type],[cpu_cores],"+
@@ -183,7 +188,7 @@ namespace Laptop_Database.Database
                                                                      "@height,@depth,@weight,@display_diagonal,@display_width,"+
                                                                      "@display_height,@display_label,@cpu_type,@cpu_cores,"+
                                                                      "@ram_type,@ram_frequency,@ram_size,@hdd_type,@hdd_size,"+
-                                                                     "'','')", connection);
+                                                                     "@os_label,@gpu_type)", connection);
             comm.Parameters.Add("@hash",hash);
             comm.Parameters.Add("@serial",laptop.serial);
             comm.Parameters.Add("@color",laptop.color);
@@ -205,6 +210,12 @@ namespace Laptop_Database.Database
             comm.Parameters.Add("@os_label",laptop.os.label);
             comm.Parameters.Add("@gpu_type",laptop.gpu.type);
             comm.ExecuteNonQuery();
+            return messages;
+        }
+
+        void Connection_InfoMessage(object sender, SqlInfoMessageEventArgs e)
+        {
+            messages.Add(e.Message);
         }
     }
 }

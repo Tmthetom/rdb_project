@@ -26,8 +26,8 @@ namespace Laptop_Database.Database
 
         public abstract Dictionary<Hardware.Laptop, bool[]> get();
         public abstract Dictionary<Hardware.Laptop, bool[]> get(string condition);
-        public abstract void insert(Hardware.Laptop laptop, string hash);
-        public abstract void insert(List<Hardware.Laptop> laptops, string hash);
+        public abstract List<string> insert(Hardware.Laptop laptop, string hash);
+        public abstract List<string> insert(List<Hardware.Laptop> laptops, string hash);
         public static IDBConnector factory(string name)
         {
             switch(name)
