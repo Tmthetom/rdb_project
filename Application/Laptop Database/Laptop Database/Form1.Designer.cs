@@ -57,6 +57,8 @@
             this.weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inconsistent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel_Search_Top = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelSearchRAM = new System.Windows.Forms.Label();
             this.tabPage_Add = new System.Windows.Forms.TabPage();
             this.label_NumberOfAdded = new System.Windows.Forms.Label();
             this.panel_Result = new System.Windows.Forms.Panel();
@@ -77,10 +79,6 @@
             this.label_DatabaseCreator = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.searchWeight = new Bunifu.Framework.UI.BunifuRange();
-            this.searchRam = new Bunifu.Framework.UI.BunifuTrackbar();
-            this.labelSearchRAM = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel_Menu.SuspendLayout();
@@ -382,12 +380,34 @@
             this.panel_Search_Top.Controls.Add(this.comboBox1);
             this.panel_Search_Top.Controls.Add(this.label1);
             this.panel_Search_Top.Controls.Add(this.labelSearchRAM);
-            this.panel_Search_Top.Controls.Add(this.searchRam);
-            this.panel_Search_Top.Controls.Add(this.searchWeight);
             this.panel_Search_Top.Location = new System.Drawing.Point(0, 2);
             this.panel_Search_Top.Name = "panel_Search_Top";
             this.panel_Search_Top.Size = new System.Drawing.Size(731, 146);
             this.panel_Search_Top.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(15, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 16);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Weight";
+            // 
+            // labelSearchRAM
+            // 
+            this.labelSearchRAM.AutoSize = true;
+            this.labelSearchRAM.BackColor = System.Drawing.Color.Transparent;
+            this.labelSearchRAM.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelSearchRAM.ForeColor = System.Drawing.Color.White;
+            this.labelSearchRAM.Location = new System.Drawing.Point(15, 16);
+            this.labelSearchRAM.Name = "labelSearchRAM";
+            this.labelSearchRAM.Size = new System.Drawing.Size(41, 16);
+            this.labelSearchRAM.TabIndex = 5;
+            this.labelSearchRAM.Text = "RAM";
             // 
             // tabPage_Add
             // 
@@ -601,58 +621,6 @@
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker_DoWork);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker_RunWorkerCompleted);
             // 
-            // searchWeight
-            // 
-            this.searchWeight.BackColor = System.Drawing.Color.Transparent;
-            this.searchWeight.BackgroudColor = System.Drawing.Color.DarkGray;
-            this.searchWeight.BorderRadius = 0;
-            this.searchWeight.IndicatorColor = System.Drawing.Color.PaleTurquoise;
-            this.searchWeight.Location = new System.Drawing.Point(105, 42);
-            this.searchWeight.MaximumRange = 100;
-            this.searchWeight.Name = "searchWeight";
-            this.searchWeight.RangeMax = 49;
-            this.searchWeight.RangeMin = 0;
-            this.searchWeight.Size = new System.Drawing.Size(222, 30);
-            this.searchWeight.TabIndex = 3;
-            // 
-            // searchRam
-            // 
-            this.searchRam.BackColor = System.Drawing.Color.Transparent;
-            this.searchRam.BackgroudColor = System.Drawing.Color.DarkGray;
-            this.searchRam.BorderRadius = 0;
-            this.searchRam.IndicatorColor = System.Drawing.Color.PaleTurquoise;
-            this.searchRam.Location = new System.Drawing.Point(105, 12);
-            this.searchRam.MaximumValue = 100;
-            this.searchRam.Name = "searchRam";
-            this.searchRam.Size = new System.Drawing.Size(222, 30);
-            this.searchRam.SliderRadius = 0;
-            this.searchRam.TabIndex = 4;
-            this.searchRam.Value = 0;
-            // 
-            // labelSearchRAM
-            // 
-            this.labelSearchRAM.AutoSize = true;
-            this.labelSearchRAM.BackColor = System.Drawing.Color.Transparent;
-            this.labelSearchRAM.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelSearchRAM.ForeColor = System.Drawing.Color.White;
-            this.labelSearchRAM.Location = new System.Drawing.Point(15, 16);
-            this.labelSearchRAM.Name = "labelSearchRAM";
-            this.labelSearchRAM.Size = new System.Drawing.Size(41, 16);
-            this.labelSearchRAM.TabIndex = 5;
-            this.labelSearchRAM.Text = "RAM";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(15, 45);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 16);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Weight";
-            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -763,12 +731,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn inconsistent;
         private System.Windows.Forms.Label label_NumberOfAdded;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
-        private Bunifu.Framework.UI.BunifuRange searchWeight;
-        private Bunifu.Framework.UI.BunifuTrackbar searchRam;
         private System.Windows.Forms.Label labelSearchRAM;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
