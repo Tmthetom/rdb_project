@@ -28,6 +28,10 @@ namespace Laptop_Database
         #endregion Initialization
 
         #region Search
+
+        private Color inconsistentRow = Color.FromArgb(245, 245, 245);
+        private Color inconsistentCell = Color.FromArgb(220, 220, 220);
+
         /// <summary>
         /// Called, when selected top filter changed.
         /// </summary>
@@ -47,6 +51,7 @@ namespace Laptop_Database
         {
             formFilter.Show();
         }
+
         #endregion Search
 
         #region Import
