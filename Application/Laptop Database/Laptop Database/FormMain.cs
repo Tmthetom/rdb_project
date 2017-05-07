@@ -1,4 +1,5 @@
-﻿using Laptop_Database.Hardware;
+﻿using Laptop_Database.Database;
+using Laptop_Database.Hardware;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +15,10 @@ namespace Laptop_Database
 {
     public partial class FormMain : System.Windows.Forms.Form
     {
+        public DatabaseFilter currentFilter = null;
+        public List<DatabaseFilter> filterList = new List<DatabaseFilter>();
         private List<Laptop> laptopList;
-        private FormFilter formFilter = new FormFilter();
+        private BindingList<Laptop> listBinding;
 
         #region Initialization
 
@@ -49,6 +52,7 @@ namespace Laptop_Database
         /// <param name="e"></param>
         private void CustomFilter_Click(object sender, EventArgs e)
         {
+            FormFilter formFilter = new FormFilter(this);
             formFilter.Show();
         }
 
@@ -77,8 +81,10 @@ namespace Laptop_Database
                 default:
                     break;
             }
+            listBinding = new BindingList<Laptop>(laptopList);
+
             var source = new BindingSource();
-            source.DataSource = laptopList;
+            source.DataSource = listBinding;
             dataGridView_Search.DataSource = source;
         }
 
@@ -210,7 +216,7 @@ namespace Laptop_Database
 
         #region Filters
 
-        
+
 
         #endregion Filters
 
@@ -237,7 +243,22 @@ namespace Laptop_Database
                 }
                 e.Value = val;
             }
+
         }
+        private void dataGridView_Search_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            DataGridView grid = (DataGridView)sender;
+            foreach (DataGridViewRow dgvr in grid.Rows)
+            {
+                Laptop laptop = dgvr.DataBoundItem as Laptop;
+                if (laptop != null)
+                {
+                    if (laptop.weight == 3)
+                        dgvr.DefaultCellStyle.BackColor = inconsistentRow;
+                }
+            }
+        }
+
         #endregion Data Formating
 
         #endregion Search
@@ -320,6 +341,54 @@ namespace Laptop_Database
 
         #endregion Add
 
+        public void applyFilter()
+        {
+            if (currentFilter != null && laptopList != null)
+            {
+                var source = new BindingSource();
+                listBinding = new BindingList<Laptop>(laptopList);
+
+                if (currentFilter.ram!=null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.ram.size <= currentFilter.ram).ToList());
+
+                if (currentFilter.weightLower != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.weight >= currentFilter.weightLower).ToList());
+
+                if (currentFilter.weightUpper != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.weight <= currentFilter.weightUpper).ToList());
+
+                if (currentFilter.width != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.width <= currentFilter.width).ToList());
+
+                if (currentFilter.height != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.height <= currentFilter.height).ToList());
+
+                if (currentFilter.depth != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.depth <= currentFilter.depth).ToList());
+
+                if (currentFilter.resolutionWidth != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.display.width <= currentFilter.resolutionWidth).ToList());
+
+                if (currentFilter.resolutionHeight != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.display.height <= currentFilter.resolutionHeight).ToList());
+
+                if (currentFilter.cpu != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.cpu.type.Equals(currentFilter.cpu)).ToList());
+
+                //inconsistent, not implemented
+                //listBinding = new BindingList<Laptop>(listBinding);
+
+                source.DataSource = listBinding;
+                dataGridView_Search.DataSource = source;
+            }
+        }
+
+
         #endregion
+
+        private void pictureBox_Logo_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            applyFilter();
+        }
     }
 }
