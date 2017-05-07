@@ -399,7 +399,7 @@
             // customFilter
             // 
             this.customFilter.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
-            this.customFilter.BackColor = System.Drawing.Color.Thistle;
+            this.customFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.customFilter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.customFilter.BorderRadius = 0;
             this.customFilter.ButtonText = "Custom filter";
