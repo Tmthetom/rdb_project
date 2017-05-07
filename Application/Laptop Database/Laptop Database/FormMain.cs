@@ -12,19 +12,42 @@ using System.Windows.Forms;
 
 namespace Laptop_Database
 {
-    public partial class Form : System.Windows.Forms.Form
+    public partial class FormMain : System.Windows.Forms.Form
     {
         private List<Laptop> laptopList;
+        private FormFilter formFilter = new FormFilter();
 
         #region Initialization
 
-        public Form()
+        public FormMain()
         {
             InitializeComponent();
             dataGridView_Search.AutoGenerateColumns = false;
         }
 
         #endregion Initialization
+
+        #region Search
+        /// <summary>
+        /// Called, when selected top filter changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TopSearch_onItemSelected(object sender, EventArgs e)
+        {
+            MessageBox.Show(topSearch.selectedValue.ToString());
+        }
+
+        /// <summary>
+        /// Open new custom filte Form. Called, when custom filter button clicked.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CustomFilter_Click(object sender, EventArgs e)
+        {
+            formFilter.Show();
+        }
+        #endregion Search
 
         #region Import
 

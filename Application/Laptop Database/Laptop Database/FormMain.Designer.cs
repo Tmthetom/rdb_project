@@ -1,6 +1,6 @@
 ﻿namespace Laptop_Database
 {
-    partial class Form
+    partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.panel_Menu = new System.Windows.Forms.Panel();
             this.pictureBox_Logo = new System.Windows.Forms.PictureBox();
             this.pictureBox_About = new System.Windows.Forms.PictureBox();
@@ -57,8 +57,8 @@
             this.weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inconsistent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel_Search_Top = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelSearchRAM = new System.Windows.Forms.Label();
+            this.topSearch = new Bunifu.Framework.UI.BunifuDropdown();
+            this.customFilter = new Bunifu.Framework.UI.BunifuFlatButton();
             this.tabPage_Add = new System.Windows.Forms.TabPage();
             this.label_NumberOfAdded = new System.Windows.Forms.Label();
             this.panel_Result = new System.Windows.Forms.Panel();
@@ -79,8 +79,6 @@
             this.label_DatabaseCreator = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel_Menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_About)).BeginInit();
@@ -213,11 +211,11 @@
             this.Depth,
             this.weight,
             this.inconsistent});
-            this.dataGridView_Search.Location = new System.Drawing.Point(0, 146);
+            this.dataGridView_Search.Location = new System.Drawing.Point(0, 76);
             this.dataGridView_Search.Name = "dataGridView_Search";
             this.dataGridView_Search.ReadOnly = true;
             this.dataGridView_Search.RowHeadersVisible = false;
-            this.dataGridView_Search.Size = new System.Drawing.Size(729, 296);
+            this.dataGridView_Search.Size = new System.Drawing.Size(729, 365);
             this.dataGridView_Search.TabIndex = 0;
             this.dataGridView_Search.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridView_Search_CellFormatting);
             // 
@@ -376,38 +374,62 @@
             this.panel_Search_Top.BackColor = System.Drawing.SystemColors.Control;
             this.panel_Search_Top.BackgroundImage = global::Laptop_Database.Properties.Resources.CodeTranslation;
             this.panel_Search_Top.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel_Search_Top.Controls.Add(this.label2);
-            this.panel_Search_Top.Controls.Add(this.comboBox1);
-            this.panel_Search_Top.Controls.Add(this.label1);
-            this.panel_Search_Top.Controls.Add(this.labelSearchRAM);
+            this.panel_Search_Top.Controls.Add(this.topSearch);
+            this.panel_Search_Top.Controls.Add(this.customFilter);
             this.panel_Search_Top.Location = new System.Drawing.Point(0, 2);
             this.panel_Search_Top.Name = "panel_Search_Top";
-            this.panel_Search_Top.Size = new System.Drawing.Size(731, 146);
+            this.panel_Search_Top.Size = new System.Drawing.Size(731, 74);
             this.panel_Search_Top.TabIndex = 6;
             // 
-            // label1
+            // topSearch
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(15, 45);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 16);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Weight";
+            this.topSearch.BackColor = System.Drawing.Color.Transparent;
+            this.topSearch.BorderRadius = 3;
+            this.topSearch.ForeColor = System.Drawing.Color.White;
+            this.topSearch.Items = new string[0];
+            this.topSearch.Location = new System.Drawing.Point(16, 12);
+            this.topSearch.Name = "topSearch";
+            this.topSearch.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.topSearch.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.topSearch.selectedIndex = -1;
+            this.topSearch.Size = new System.Drawing.Size(453, 48);
+            this.topSearch.TabIndex = 1;
+            this.topSearch.onItemSelected += new System.EventHandler(this.TopSearch_onItemSelected);
             // 
-            // labelSearchRAM
+            // customFilter
             // 
-            this.labelSearchRAM.AutoSize = true;
-            this.labelSearchRAM.BackColor = System.Drawing.Color.Transparent;
-            this.labelSearchRAM.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelSearchRAM.ForeColor = System.Drawing.Color.White;
-            this.labelSearchRAM.Location = new System.Drawing.Point(15, 16);
-            this.labelSearchRAM.Name = "labelSearchRAM";
-            this.labelSearchRAM.Size = new System.Drawing.Size(41, 16);
-            this.labelSearchRAM.TabIndex = 5;
-            this.labelSearchRAM.Text = "RAM";
+            this.customFilter.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.customFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.customFilter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.customFilter.BorderRadius = 0;
+            this.customFilter.ButtonText = "Custom filter";
+            this.customFilter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.customFilter.DisabledColor = System.Drawing.Color.Gray;
+            this.customFilter.Iconcolor = System.Drawing.Color.Transparent;
+            this.customFilter.Iconimage = null;
+            this.customFilter.Iconimage_right = null;
+            this.customFilter.Iconimage_right_Selected = null;
+            this.customFilter.Iconimage_Selected = null;
+            this.customFilter.IconMarginLeft = 0;
+            this.customFilter.IconMarginRight = 0;
+            this.customFilter.IconRightVisible = true;
+            this.customFilter.IconRightZoom = 0D;
+            this.customFilter.IconVisible = true;
+            this.customFilter.IconZoom = 90D;
+            this.customFilter.IsTab = false;
+            this.customFilter.Location = new System.Drawing.Point(475, 12);
+            this.customFilter.Name = "customFilter";
+            this.customFilter.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.customFilter.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.customFilter.OnHoverTextColor = System.Drawing.Color.White;
+            this.customFilter.selected = false;
+            this.customFilter.Size = new System.Drawing.Size(241, 48);
+            this.customFilter.TabIndex = 0;
+            this.customFilter.Text = "Custom filter";
+            this.customFilter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.customFilter.Textcolor = System.Drawing.Color.White;
+            this.customFilter.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customFilter.Click += new System.EventHandler(this.CustomFilter_Click);
             // 
             // tabPage_Add
             // 
@@ -621,27 +643,7 @@
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker_DoWork);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker_RunWorkerCompleted);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(105, 74);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(222, 21);
-            this.comboBox1.TabIndex = 7;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(15, 75);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 16);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Resolution";
-            // 
-            // Form
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -652,7 +654,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Form";
+            this.Name = "FormMain";
             this.Text = "Laptop Database";
             this.panel_Menu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Logo)).EndInit();
@@ -663,7 +665,6 @@
             this.tabPage_Search.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Search)).EndInit();
             this.panel_Search_Top.ResumeLayout(false);
-            this.panel_Search_Top.PerformLayout();
             this.tabPage_Add.ResumeLayout(false);
             this.tabPage_Add.PerformLayout();
             this.panel_Result.ResumeLayout(false);
@@ -731,10 +732,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn inconsistent;
         private System.Windows.Forms.Label label_NumberOfAdded;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
-        private System.Windows.Forms.Label labelSearchRAM;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private Bunifu.Framework.UI.BunifuDropdown topSearch;
+        private Bunifu.Framework.UI.BunifuFlatButton customFilter;
     }
 }
 
