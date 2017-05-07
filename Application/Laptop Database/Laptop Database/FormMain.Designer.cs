@@ -121,6 +121,7 @@
             this.pictureBox_Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Logo.TabIndex = 6;
             this.pictureBox_Logo.TabStop = false;
+            this.pictureBox_Logo.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_Logo_MouseDoubleClick);
             // 
             // pictureBox_About
             // 
@@ -218,6 +219,7 @@
             this.dataGridView_Search.Size = new System.Drawing.Size(729, 365);
             this.dataGridView_Search.TabIndex = 0;
             this.dataGridView_Search.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridView_Search_CellFormatting);
+            this.dataGridView_Search.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView_Search_DataBindingComplete);
             // 
             // product_number
             // 
@@ -386,12 +388,13 @@
             this.topSearch.BackColor = System.Drawing.Color.Transparent;
             this.topSearch.BorderRadius = 3;
             this.topSearch.ForeColor = System.Drawing.Color.White;
-            this.topSearch.Items = new string[0];
+            this.topSearch.Items = new string[] {
+        "no filter"};
             this.topSearch.Location = new System.Drawing.Point(16, 12);
             this.topSearch.Name = "topSearch";
             this.topSearch.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.topSearch.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.topSearch.selectedIndex = -1;
+            this.topSearch.selectedIndex = 0;
             this.topSearch.Size = new System.Drawing.Size(453, 48);
             this.topSearch.TabIndex = 1;
             this.topSearch.onItemSelected += new System.EventHandler(this.TopSearch_onItemSelected);

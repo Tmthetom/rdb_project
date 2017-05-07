@@ -80,7 +80,7 @@
             this.labelRamTo.Name = "labelRamTo";
             this.labelRamTo.Size = new System.Drawing.Size(44, 16);
             this.labelRamTo.TabIndex = 4;
-            this.labelRamTo.Text = "16 GB";
+            this.labelRamTo.Text = "64 GB";
             // 
             // filterRam
             // 
