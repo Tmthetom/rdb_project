@@ -16,15 +16,25 @@ namespace Laptop_Database
     {
         private List<Laptop> laptopList;
 
+        #region Initialization
+
         public Form()
         {
             InitializeComponent();
             dataGridView_Search.AutoGenerateColumns = false;
         }
 
+        #endregion Initialization
+
+        #region Import
+
+        /// <summary>
+        /// Called when new file loaded through DragAndDrop or OpenFile in Add (Menu)
+        /// </summary>
+        /// <param name="filePath"></param>
         void FileLoaded(string filePath)
         {
-            String extension = filePath.Substring(filePath.LastIndexOf("."), filePath.Length-filePath.LastIndexOf("."));
+            String extension = filePath.Substring(filePath.LastIndexOf("."), filePath.Length - filePath.LastIndexOf("."));
             switch (extension)
             {
                 case ".xml":
@@ -44,13 +54,35 @@ namespace Laptop_Database
             dataGridView_Search.DataSource = source;
         }
 
+        /// <summary>
+        /// When called, runs another thread with data import
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Called, when another thread finished
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //ShowNumberOfAddedRows(numberOfNewRows);
+        }
+
+        #endregion Import
+
         #region User Interface
 
         #region Menu
 
-        Color color_Button_Normal = SystemColors.Highlight;
-        Color color_Button_Hover = SystemColors.HotTrack;
-        Color color_Button_Actual = Color.CornflowerBlue;
+        private Color color_Button_Normal = SystemColors.Highlight;
+        private Color color_Button_Hover = SystemColors.HotTrack;
+        private Color color_Button_Actual = Color.SkyBlue;
 
         #region Search button
         private void Button_SearchHover(object sender, EventArgs e)
@@ -146,7 +178,46 @@ namespace Laptop_Database
 
         #endregion Menu
 
+        #region Search
+
+        #region Filters
+
+        
+
+        #endregion Filters
+
+        #region Data Formating
+        /// <summary>
+        /// Cell formating
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataGridView_Search_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridView grid = (DataGridView)sender;
+            DataGridViewRow row = grid.Rows[e.RowIndex];
+            DataGridViewColumn col = grid.Columns[e.ColumnIndex];
+            if (row.DataBoundItem != null && col.DataPropertyName.Contains("."))
+            {
+                string[] props = col.DataPropertyName.Split('.');
+                PropertyInfo propInfo = row.DataBoundItem.GetType().GetProperty(props[0]);
+                object val = propInfo.GetValue(row.DataBoundItem, null);
+                for (int i = 1; i < props.Length; i++)
+                {
+                    propInfo = val.GetType().GetProperty(props[i]);
+                    val = propInfo.GetValue(val, null);
+                }
+                e.Value = val;
+            }
+        }
+        #endregion Data Formating
+
+        #endregion Search
+
         #region Add
+
+        private Color leaveColor = Color.Transparent;
+        private Color dragColor = Color.SkyBlue;
 
         /// <summary>
         /// When panel clicked
@@ -171,7 +242,7 @@ namespace Laptop_Database
         private void DragAndDrop_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;  // Enable DragAndDrop
-            panel_Add_DragAndDrop.BackColor = Color.GreenYellow;
+            panel_Add_DragAndDrop.BackColor = dragColor;
         }
 
 
@@ -182,7 +253,7 @@ namespace Laptop_Database
         /// <param name="e"></param>
         private void DragAndDrop_DragLeave(object sender, EventArgs e)
         {
-            panel_Add_DragAndDrop.BackColor = Color.Transparent;
+            panel_Add_DragAndDrop.BackColor = leaveColor;
         }
 
         /// <summary>
@@ -196,31 +267,31 @@ namespace Laptop_Database
             string[] filePaths = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             openFileDialog.FileName = filePaths[0];
             FileLoaded(openFileDialog.FileName);
-            panel_Add_DragAndDrop.BackColor = Color.Transparent;
+            panel_Add_DragAndDrop.BackColor = leaveColor;
+        }
+
+        /// <summary>
+        /// Show number of added rows in Add tab, after data insert.
+        /// </summary>
+        /// <param name="rows">Number of new added rows</param>
+        private void ShowNumberOfAddedRows(int rows)
+        {
+            if (rows >= 2)  // For two and more rows
+            {
+                label_NumberOfAdded.Text = "Added " + rows + " new rows.";
+            }
+            else if (rows == 1)  // For one row
+            {
+                label_NumberOfAdded.Text = "Added " + rows + " new row.";
+            }
+            else  // For zero rows
+            {
+                label_NumberOfAdded.Text = "No rows added (rows are same, or there are no rows).";
+            }
         }
 
         #endregion Add
 
-        private void dataGridView_Search_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            DataGridView grid = (DataGridView)sender;
-            DataGridViewRow row = grid.Rows[e.RowIndex];
-            DataGridViewColumn col = grid.Columns[e.ColumnIndex];
-            if (row.DataBoundItem != null && col.DataPropertyName.Contains("."))
-            {
-                string[] props = col.DataPropertyName.Split('.');
-                PropertyInfo propInfo = row.DataBoundItem.GetType().GetProperty(props[0]);
-                object val = propInfo.GetValue(row.DataBoundItem, null);
-                for (int i = 1; i < props.Length; i++)
-                {
-                    propInfo = val.GetType().GetProperty(props[i]);
-                    val = propInfo.GetValue(val, null);
-                }
-                e.Value = val;
-            }
-        }
-
         #endregion
-
     }
 }
