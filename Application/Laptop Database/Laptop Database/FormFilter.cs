@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Laptop_Database
 {
@@ -32,7 +33,7 @@ namespace Laptop_Database
             int maxDepth = 400;
             int maxResolutionWidth = 4096;
             int maxResolutionHeight = 2160;
-            List<String> cpus = new List<string> { "Intel Core i7", "Intel Core i3", "AMD RYZEN 7 1800X" };
+            List<string> cpus = formMain.laptopList.Select(laptop => laptop.cpu.type).Distinct().ToList();
 
             // RAM
             filterRam.MaximumValue = maxRam;
@@ -124,8 +125,9 @@ namespace Laptop_Database
             if (filterResolutionHeight.Value != filterResolutionHeight.MaximumValue)
                 resolutionHeight = filterResolutionHeight.Value;
 
-            //filterComboBoxCpu.SelectedItem.ToString()
             String cpu = null;
+            if (!filterComboBoxCpu.SelectedItem.ToString().Equals("any"))
+                cpu = filterComboBoxCpu.SelectedItem.ToString();
 
             bool inconsistent = filterCheckBox.Checked;
 

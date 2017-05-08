@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Laptop_Database.Hardware
 {
-    class Laptop
+    public class Laptop
     {
         public String serial { get; set; }
         public Display display { get; set; }

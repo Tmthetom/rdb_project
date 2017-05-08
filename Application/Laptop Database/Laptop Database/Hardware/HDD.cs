@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Laptop_Database.Hardware
 {
-    class HDD
+    public class HDD
     {
         public int size{ get; set; }
         public String type { get; set; }

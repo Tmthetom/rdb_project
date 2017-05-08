@@ -20,7 +20,7 @@ namespace Laptop_Database
 
         public DatabaseFilter currentFilter = null;
         public List<DatabaseFilter> filterList = new List<DatabaseFilter>();
-        private List<Laptop> laptopList;
+        public List<Laptop> laptopList;
         private BindingList<Laptop> listBinding;
 
         public FormMain()

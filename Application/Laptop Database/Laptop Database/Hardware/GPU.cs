@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Laptop_Database.Hardware
 {
-    class GPU
+    public class GPU
     {
         public String type { get; set; }
         public GPU(String type)

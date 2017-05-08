@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Laptop_Database.Hardware
 {
-    class CPU
+    public class CPU
     {
         public String type { get; set; }
         public int number_cores { get; set; }

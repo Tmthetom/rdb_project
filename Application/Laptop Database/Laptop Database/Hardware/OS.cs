@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Laptop_Database.Hardware
 {
-    class OS
+    public class OS
     {
         public String label { get; set; }
         public OS(String label)

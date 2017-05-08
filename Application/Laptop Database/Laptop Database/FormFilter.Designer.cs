@@ -342,10 +342,13 @@
             // filterComboBoxCpu
             // 
             this.filterComboBoxCpu.FormattingEnabled = true;
+            this.filterComboBoxCpu.Items.AddRange(new object[] {
+            "any"});
             this.filterComboBoxCpu.Location = new System.Drawing.Point(249, 280);
             this.filterComboBoxCpu.Name = "filterComboBoxCpu";
             this.filterComboBoxCpu.Size = new System.Drawing.Size(334, 21);
             this.filterComboBoxCpu.TabIndex = 37;
+            this.filterComboBoxCpu.Text = "any";
             // 
             // filterCheckBox
             // 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Laptop_Database.Hardware
 {
-    class RAM
+    public class RAM
     {
         public String type { get; set; }
         public double frequency { get; set; }
