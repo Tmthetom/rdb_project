@@ -28,7 +28,8 @@ namespace Laptop_Database.Database
         public abstract List<Hardware.Laptop> get(string condition);
         public abstract List<string> insert(Hardware.Laptop laptop, string hash);
         public abstract List<string> insert(List<Hardware.Laptop> laptops, string hash);
-
+        public abstract Dictionary<string, int> getMaxValues();
+        public abstract Dictionary<string, List<string>> getDistinctValues();
         public abstract void insertPattern(string pattern);
 
         public abstract List<string> getTopPattern(int numberOfPatterns);

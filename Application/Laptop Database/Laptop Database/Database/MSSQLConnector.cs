@@ -248,5 +248,59 @@ namespace Laptop_Database.Database
         {
             messages.Add(e.Message);
         }
+
+        public override Dictionary<string, int> getMaxValues()
+        {
+            if(!success)
+            {
+                return null;
+            }
+            Dictionary<string, int> maxValues = new Dictionary<string, int>();
+            SqlCommand comm = new SqlCommand("SELECT MAX([width]),MAX([height]),MAX([depth]),MAX([weight]),MAX([display_width]),MAX([display_height]),MAX([ram_size]) FROM v_notebooks", connection);
+            SqlDataReader reader = comm.ExecuteReader();
+            reader.Read();
+
+            maxValues.Add("width", Int32.Parse("" + reader[0]));
+            maxValues.Add("height", Int32.Parse("" + reader[1]));
+            maxValues.Add("depth", Int32.Parse("" + reader[2]));
+            maxValues.Add("weight", Int32.Parse("" + reader[3]));
+            maxValues.Add("display_width", Int32.Parse("" + reader[4]));
+            maxValues.Add("display_height", Int32.Parse("" + reader[5]));
+            maxValues.Add("ram_size", Int32.Parse("" + reader[6]));
+
+            reader.Close();
+            return maxValues;
+        }
+
+        public override Dictionary<string, List<string>> getDistinctValues()
+        {
+            if(!success)
+            {
+                return null;
+            }
+            Dictionary<string, List<string>> values = new Dictionary<string, List<string>>();
+            values.Add("color", new List<string>());
+            values.Add("display_label", new List<string>());
+            values.Add("cpu_type", new List<string>());
+            values.Add("ram_type", new List<string>());
+            values.Add("hdd_type", new List<string>());
+            values.Add("os_label", new List<string>());
+            values.Add("gpu_type", new List<string>());
+
+            SqlCommand comm;
+            SqlDataReader reader;
+
+            foreach(string key in values.Keys)
+            {
+                comm = new SqlCommand("SELECT distinct(" + key + ") FROM v_notebooks", connection);
+                reader = comm.ExecuteReader();
+                while (reader.Read())
+                {
+                    values[key].Add("" + reader[0]);
+                }
+                reader.Close();
+            }
+            return values;
+        }
     }
 }
