@@ -257,7 +257,7 @@ namespace Laptop_Database
 
         #endregion Tabs (Main menu buttons and their hovers, clicks and more)
 
-        #region Search tab (Formating)
+        #region Search tab (Coloring, Formating)
 
         #region Inconsistency (Coloring)
 
@@ -311,7 +311,7 @@ namespace Laptop_Database
         }
         #endregion Cell formating
 
-        #endregion Search tab (Formating)
+        #endregion Search tab (Coloring, Formating)
 
         #region Add (Drag&Drop, AddedRows)
 

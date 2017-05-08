@@ -49,13 +49,19 @@
             this.filterDepth = new Bunifu.Framework.UI.BunifuSlider();
             this.labelDepthTo = new System.Windows.Forms.Label();
             this.labelDepth = new System.Windows.Forms.Label();
-            this.labelResolution = new System.Windows.Forms.Label();
             this.labelCpu = new System.Windows.Forms.Label();
             this.labelInconsistent = new System.Windows.Forms.Label();
-            this.filterComboBoxResolution = new System.Windows.Forms.ComboBox();
             this.filterComboBoxCpu = new System.Windows.Forms.ComboBox();
             this.filterCheckBox = new Bunifu.Framework.UI.BunifuCheckbox();
             this.filterButton = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.labelResolutionWidthFrom = new System.Windows.Forms.Label();
+            this.filterResolutionWidth = new Bunifu.Framework.UI.BunifuSlider();
+            this.labelResolutionWidthTo = new System.Windows.Forms.Label();
+            this.labelResolutionWidth = new System.Windows.Forms.Label();
+            this.labelResolutionHeightFrom = new System.Windows.Forms.Label();
+            this.filterResolutionHeight = new Bunifu.Framework.UI.BunifuSlider();
+            this.labelResolutionHeightTo = new System.Windows.Forms.Label();
+            this.labelResolutionHeight = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelRam
@@ -76,7 +82,7 @@
             this.labelRamTo.BackColor = System.Drawing.Color.Transparent;
             this.labelRamTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelRamTo.ForeColor = System.Drawing.Color.White;
-            this.labelRamTo.Location = new System.Drawing.Point(540, 29);
+            this.labelRamTo.Location = new System.Drawing.Point(610, 29);
             this.labelRamTo.Name = "labelRamTo";
             this.labelRamTo.Size = new System.Drawing.Size(44, 16);
             this.labelRamTo.TabIndex = 4;
@@ -88,7 +94,7 @@
             this.filterRam.BackgroudColor = System.Drawing.Color.DarkGray;
             this.filterRam.BorderRadius = 0;
             this.filterRam.IndicatorColor = System.Drawing.Color.PaleTurquoise;
-            this.filterRam.Location = new System.Drawing.Point(180, 25);
+            this.filterRam.Location = new System.Drawing.Point(250, 25);
             this.filterRam.MaximumValue = 100;
             this.filterRam.Name = "filterRam";
             this.filterRam.Size = new System.Drawing.Size(334, 30);
@@ -114,7 +120,7 @@
             this.filterWeight.BackgroudColor = System.Drawing.Color.DarkGray;
             this.filterWeight.BorderRadius = 0;
             this.filterWeight.IndicatorColor = System.Drawing.Color.PaleTurquoise;
-            this.filterWeight.Location = new System.Drawing.Point(180, 61);
+            this.filterWeight.Location = new System.Drawing.Point(250, 61);
             this.filterWeight.MaximumRange = 100;
             this.filterWeight.Name = "filterWeight";
             this.filterWeight.RangeMax = 49;
@@ -129,7 +135,7 @@
             this.labelWeightTo.BackColor = System.Drawing.Color.Transparent;
             this.labelWeightTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelWeightTo.ForeColor = System.Drawing.Color.White;
-            this.labelWeightTo.Location = new System.Drawing.Point(540, 65);
+            this.labelWeightTo.Location = new System.Drawing.Point(610, 65);
             this.labelWeightTo.Name = "labelWeightTo";
             this.labelWeightTo.Size = new System.Drawing.Size(34, 16);
             this.labelWeightTo.TabIndex = 12;
@@ -141,7 +147,7 @@
             this.labelWeightFrom.BackColor = System.Drawing.Color.Transparent;
             this.labelWeightFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelWeightFrom.ForeColor = System.Drawing.Color.White;
-            this.labelWeightFrom.Location = new System.Drawing.Point(125, 65);
+            this.labelWeightFrom.Location = new System.Drawing.Point(195, 65);
             this.labelWeightFrom.Name = "labelWeightFrom";
             this.labelWeightFrom.Size = new System.Drawing.Size(34, 16);
             this.labelWeightFrom.TabIndex = 13;
@@ -153,7 +159,7 @@
             this.labelRamFrom.BackColor = System.Drawing.Color.Transparent;
             this.labelRamFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelRamFrom.ForeColor = System.Drawing.Color.White;
-            this.labelRamFrom.Location = new System.Drawing.Point(125, 29);
+            this.labelRamFrom.Location = new System.Drawing.Point(195, 29);
             this.labelRamFrom.Name = "labelRamFrom";
             this.labelRamFrom.Size = new System.Drawing.Size(37, 16);
             this.labelRamFrom.TabIndex = 14;
@@ -165,7 +171,7 @@
             this.labelWidthFrom.BackColor = System.Drawing.Color.Transparent;
             this.labelWidthFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelWidthFrom.ForeColor = System.Drawing.Color.White;
-            this.labelWidthFrom.Location = new System.Drawing.Point(125, 101);
+            this.labelWidthFrom.Location = new System.Drawing.Point(195, 101);
             this.labelWidthFrom.Name = "labelWidthFrom";
             this.labelWidthFrom.Size = new System.Drawing.Size(40, 16);
             this.labelWidthFrom.TabIndex = 18;
@@ -177,7 +183,7 @@
             this.filterWidth.BackgroudColor = System.Drawing.Color.DarkGray;
             this.filterWidth.BorderRadius = 0;
             this.filterWidth.IndicatorColor = System.Drawing.Color.PaleTurquoise;
-            this.filterWidth.Location = new System.Drawing.Point(180, 97);
+            this.filterWidth.Location = new System.Drawing.Point(250, 97);
             this.filterWidth.MaximumValue = 100;
             this.filterWidth.Name = "filterWidth";
             this.filterWidth.Size = new System.Drawing.Size(334, 30);
@@ -191,7 +197,7 @@
             this.labelWidthTo.BackColor = System.Drawing.Color.Transparent;
             this.labelWidthTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelWidthTo.ForeColor = System.Drawing.Color.White;
-            this.labelWidthTo.Location = new System.Drawing.Point(540, 101);
+            this.labelWidthTo.Location = new System.Drawing.Point(610, 101);
             this.labelWidthTo.Name = "labelWidthTo";
             this.labelWidthTo.Size = new System.Drawing.Size(47, 16);
             this.labelWidthTo.TabIndex = 16;
@@ -215,7 +221,7 @@
             this.labelHeightFrom.BackColor = System.Drawing.Color.Transparent;
             this.labelHeightFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelHeightFrom.ForeColor = System.Drawing.Color.White;
-            this.labelHeightFrom.Location = new System.Drawing.Point(125, 137);
+            this.labelHeightFrom.Location = new System.Drawing.Point(195, 137);
             this.labelHeightFrom.Name = "labelHeightFrom";
             this.labelHeightFrom.Size = new System.Drawing.Size(40, 16);
             this.labelHeightFrom.TabIndex = 22;
@@ -227,7 +233,7 @@
             this.filterHeight.BackgroudColor = System.Drawing.Color.DarkGray;
             this.filterHeight.BorderRadius = 0;
             this.filterHeight.IndicatorColor = System.Drawing.Color.PaleTurquoise;
-            this.filterHeight.Location = new System.Drawing.Point(180, 133);
+            this.filterHeight.Location = new System.Drawing.Point(250, 133);
             this.filterHeight.MaximumValue = 100;
             this.filterHeight.Name = "filterHeight";
             this.filterHeight.Size = new System.Drawing.Size(334, 30);
@@ -241,7 +247,7 @@
             this.labelHeightTo.BackColor = System.Drawing.Color.Transparent;
             this.labelHeightTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelHeightTo.ForeColor = System.Drawing.Color.White;
-            this.labelHeightTo.Location = new System.Drawing.Point(540, 137);
+            this.labelHeightTo.Location = new System.Drawing.Point(610, 137);
             this.labelHeightTo.Name = "labelHeightTo";
             this.labelHeightTo.Size = new System.Drawing.Size(47, 16);
             this.labelHeightTo.TabIndex = 20;
@@ -265,7 +271,7 @@
             this.labelDepthFrom.BackColor = System.Drawing.Color.Transparent;
             this.labelDepthFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelDepthFrom.ForeColor = System.Drawing.Color.White;
-            this.labelDepthFrom.Location = new System.Drawing.Point(125, 173);
+            this.labelDepthFrom.Location = new System.Drawing.Point(195, 173);
             this.labelDepthFrom.Name = "labelDepthFrom";
             this.labelDepthFrom.Size = new System.Drawing.Size(40, 16);
             this.labelDepthFrom.TabIndex = 26;
@@ -277,7 +283,7 @@
             this.filterDepth.BackgroudColor = System.Drawing.Color.DarkGray;
             this.filterDepth.BorderRadius = 0;
             this.filterDepth.IndicatorColor = System.Drawing.Color.PaleTurquoise;
-            this.filterDepth.Location = new System.Drawing.Point(180, 169);
+            this.filterDepth.Location = new System.Drawing.Point(250, 169);
             this.filterDepth.MaximumValue = 100;
             this.filterDepth.Name = "filterDepth";
             this.filterDepth.Size = new System.Drawing.Size(334, 30);
@@ -291,7 +297,7 @@
             this.labelDepthTo.BackColor = System.Drawing.Color.Transparent;
             this.labelDepthTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelDepthTo.ForeColor = System.Drawing.Color.White;
-            this.labelDepthTo.Location = new System.Drawing.Point(540, 173);
+            this.labelDepthTo.Location = new System.Drawing.Point(610, 173);
             this.labelDepthTo.Name = "labelDepthTo";
             this.labelDepthTo.Size = new System.Drawing.Size(40, 16);
             this.labelDepthTo.TabIndex = 24;
@@ -309,25 +315,13 @@
             this.labelDepth.TabIndex = 23;
             this.labelDepth.Text = "Depth";
             // 
-            // labelResolution
-            // 
-            this.labelResolution.AutoSize = true;
-            this.labelResolution.BackColor = System.Drawing.Color.Transparent;
-            this.labelResolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelResolution.ForeColor = System.Drawing.Color.White;
-            this.labelResolution.Location = new System.Drawing.Point(25, 209);
-            this.labelResolution.Name = "labelResolution";
-            this.labelResolution.Size = new System.Drawing.Size(82, 16);
-            this.labelResolution.TabIndex = 27;
-            this.labelResolution.Text = "Resolution";
-            // 
             // labelCpu
             // 
             this.labelCpu.AutoSize = true;
             this.labelCpu.BackColor = System.Drawing.Color.Transparent;
             this.labelCpu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelCpu.ForeColor = System.Drawing.Color.White;
-            this.labelCpu.Location = new System.Drawing.Point(25, 245);
+            this.labelCpu.Location = new System.Drawing.Point(25, 282);
             this.labelCpu.Name = "labelCpu";
             this.labelCpu.Size = new System.Drawing.Size(39, 16);
             this.labelCpu.TabIndex = 31;
@@ -339,24 +333,16 @@
             this.labelInconsistent.BackColor = System.Drawing.Color.Transparent;
             this.labelInconsistent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelInconsistent.ForeColor = System.Drawing.Color.White;
-            this.labelInconsistent.Location = new System.Drawing.Point(25, 281);
+            this.labelInconsistent.Location = new System.Drawing.Point(25, 318);
             this.labelInconsistent.Name = "labelInconsistent";
             this.labelInconsistent.Size = new System.Drawing.Size(90, 16);
             this.labelInconsistent.TabIndex = 35;
             this.labelInconsistent.Text = "Inconsistent";
             // 
-            // filterComboBoxResolution
-            // 
-            this.filterComboBoxResolution.FormattingEnabled = true;
-            this.filterComboBoxResolution.Location = new System.Drawing.Point(180, 205);
-            this.filterComboBoxResolution.Name = "filterComboBoxResolution";
-            this.filterComboBoxResolution.Size = new System.Drawing.Size(334, 21);
-            this.filterComboBoxResolution.TabIndex = 36;
-            // 
             // filterComboBoxCpu
             // 
             this.filterComboBoxCpu.FormattingEnabled = true;
-            this.filterComboBoxCpu.Location = new System.Drawing.Point(180, 244);
+            this.filterComboBoxCpu.Location = new System.Drawing.Point(249, 280);
             this.filterComboBoxCpu.Name = "filterComboBoxCpu";
             this.filterComboBoxCpu.Size = new System.Drawing.Size(334, 21);
             this.filterComboBoxCpu.TabIndex = 37;
@@ -368,7 +354,7 @@
             this.filterCheckBox.Checked = true;
             this.filterCheckBox.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(205)))), ((int)(((byte)(117)))));
             this.filterCheckBox.ForeColor = System.Drawing.Color.White;
-            this.filterCheckBox.Location = new System.Drawing.Point(180, 280);
+            this.filterCheckBox.Location = new System.Drawing.Point(250, 317);
             this.filterCheckBox.Name = "filterCheckBox";
             this.filterCheckBox.Size = new System.Drawing.Size(20, 20);
             this.filterCheckBox.TabIndex = 38;
@@ -394,13 +380,13 @@
             this.filterButton.IconVisible = true;
             this.filterButton.IconZoom = 90D;
             this.filterButton.IsTab = false;
-            this.filterButton.Location = new System.Drawing.Point(28, 315);
+            this.filterButton.Location = new System.Drawing.Point(28, 352);
             this.filterButton.Name = "filterButton";
             this.filterButton.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.filterButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.filterButton.OnHoverTextColor = System.Drawing.Color.White;
             this.filterButton.selected = false;
-            this.filterButton.Size = new System.Drawing.Size(555, 48);
+            this.filterButton.Size = new System.Drawing.Size(629, 48);
             this.filterButton.TabIndex = 39;
             this.filterButton.Text = "Use filter";
             this.filterButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -408,20 +394,126 @@
             this.filterButton.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.filterButton.Click += new System.EventHandler(this.FilterButton_Click);
             // 
+            // labelResolutionWidthFrom
+            // 
+            this.labelResolutionWidthFrom.AutoSize = true;
+            this.labelResolutionWidthFrom.BackColor = System.Drawing.Color.Transparent;
+            this.labelResolutionWidthFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelResolutionWidthFrom.ForeColor = System.Drawing.Color.White;
+            this.labelResolutionWidthFrom.Location = new System.Drawing.Point(195, 209);
+            this.labelResolutionWidthFrom.Name = "labelResolutionWidthFrom";
+            this.labelResolutionWidthFrom.Size = new System.Drawing.Size(32, 16);
+            this.labelResolutionWidthFrom.TabIndex = 43;
+            this.labelResolutionWidthFrom.Text = "0 px";
+            // 
+            // filterResolutionWidth
+            // 
+            this.filterResolutionWidth.BackColor = System.Drawing.Color.Transparent;
+            this.filterResolutionWidth.BackgroudColor = System.Drawing.Color.DarkGray;
+            this.filterResolutionWidth.BorderRadius = 0;
+            this.filterResolutionWidth.IndicatorColor = System.Drawing.Color.PaleTurquoise;
+            this.filterResolutionWidth.Location = new System.Drawing.Point(250, 205);
+            this.filterResolutionWidth.MaximumValue = 100;
+            this.filterResolutionWidth.Name = "filterResolutionWidth";
+            this.filterResolutionWidth.Size = new System.Drawing.Size(334, 30);
+            this.filterResolutionWidth.TabIndex = 42;
+            this.filterResolutionWidth.Value = 100;
+            this.filterResolutionWidth.ValueChanged += new System.EventHandler(this.FilterResolutionWidth_ValueChanged);
+            // 
+            // labelResolutionWidthTo
+            // 
+            this.labelResolutionWidthTo.AutoSize = true;
+            this.labelResolutionWidthTo.BackColor = System.Drawing.Color.Transparent;
+            this.labelResolutionWidthTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelResolutionWidthTo.ForeColor = System.Drawing.Color.White;
+            this.labelResolutionWidthTo.Location = new System.Drawing.Point(610, 209);
+            this.labelResolutionWidthTo.Name = "labelResolutionWidthTo";
+            this.labelResolutionWidthTo.Size = new System.Drawing.Size(32, 16);
+            this.labelResolutionWidthTo.TabIndex = 41;
+            this.labelResolutionWidthTo.Text = "5 px";
+            // 
+            // labelResolutionWidth
+            // 
+            this.labelResolutionWidth.AutoSize = true;
+            this.labelResolutionWidth.BackColor = System.Drawing.Color.Transparent;
+            this.labelResolutionWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelResolutionWidth.ForeColor = System.Drawing.Color.White;
+            this.labelResolutionWidth.Location = new System.Drawing.Point(25, 209);
+            this.labelResolutionWidth.Name = "labelResolutionWidth";
+            this.labelResolutionWidth.Size = new System.Drawing.Size(125, 16);
+            this.labelResolutionWidth.TabIndex = 40;
+            this.labelResolutionWidth.Text = "Resolution Width";
+            // 
+            // labelResolutionHeightFrom
+            // 
+            this.labelResolutionHeightFrom.AutoSize = true;
+            this.labelResolutionHeightFrom.BackColor = System.Drawing.Color.Transparent;
+            this.labelResolutionHeightFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelResolutionHeightFrom.ForeColor = System.Drawing.Color.White;
+            this.labelResolutionHeightFrom.Location = new System.Drawing.Point(195, 245);
+            this.labelResolutionHeightFrom.Name = "labelResolutionHeightFrom";
+            this.labelResolutionHeightFrom.Size = new System.Drawing.Size(32, 16);
+            this.labelResolutionHeightFrom.TabIndex = 47;
+            this.labelResolutionHeightFrom.Text = "0 px";
+            // 
+            // filterResolutionHeight
+            // 
+            this.filterResolutionHeight.BackColor = System.Drawing.Color.Transparent;
+            this.filterResolutionHeight.BackgroudColor = System.Drawing.Color.DarkGray;
+            this.filterResolutionHeight.BorderRadius = 0;
+            this.filterResolutionHeight.IndicatorColor = System.Drawing.Color.PaleTurquoise;
+            this.filterResolutionHeight.Location = new System.Drawing.Point(250, 241);
+            this.filterResolutionHeight.MaximumValue = 100;
+            this.filterResolutionHeight.Name = "filterResolutionHeight";
+            this.filterResolutionHeight.Size = new System.Drawing.Size(334, 30);
+            this.filterResolutionHeight.TabIndex = 46;
+            this.filterResolutionHeight.Value = 100;
+            this.filterResolutionHeight.ValueChanged += new System.EventHandler(this.FilterResolutionHeight_ValueChanged);
+            // 
+            // labelResolutionHeightTo
+            // 
+            this.labelResolutionHeightTo.AutoSize = true;
+            this.labelResolutionHeightTo.BackColor = System.Drawing.Color.Transparent;
+            this.labelResolutionHeightTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelResolutionHeightTo.ForeColor = System.Drawing.Color.White;
+            this.labelResolutionHeightTo.Location = new System.Drawing.Point(610, 245);
+            this.labelResolutionHeightTo.Name = "labelResolutionHeightTo";
+            this.labelResolutionHeightTo.Size = new System.Drawing.Size(32, 16);
+            this.labelResolutionHeightTo.TabIndex = 45;
+            this.labelResolutionHeightTo.Text = "5 px";
+            // 
+            // labelResolutionHeight
+            // 
+            this.labelResolutionHeight.AutoSize = true;
+            this.labelResolutionHeight.BackColor = System.Drawing.Color.Transparent;
+            this.labelResolutionHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelResolutionHeight.ForeColor = System.Drawing.Color.White;
+            this.labelResolutionHeight.Location = new System.Drawing.Point(25, 245);
+            this.labelResolutionHeight.Name = "labelResolutionHeight";
+            this.labelResolutionHeight.Size = new System.Drawing.Size(131, 16);
+            this.labelResolutionHeight.TabIndex = 44;
+            this.labelResolutionHeight.Text = "Resolution Height";
+            // 
             // FormFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Laptop_Database.Properties.Resources.CodeTranslation;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(612, 381);
+            this.ClientSize = new System.Drawing.Size(683, 419);
+            this.Controls.Add(this.labelResolutionHeightFrom);
+            this.Controls.Add(this.filterResolutionHeight);
+            this.Controls.Add(this.labelResolutionHeightTo);
+            this.Controls.Add(this.labelResolutionHeight);
+            this.Controls.Add(this.labelResolutionWidthFrom);
+            this.Controls.Add(this.filterResolutionWidth);
+            this.Controls.Add(this.labelResolutionWidthTo);
+            this.Controls.Add(this.labelResolutionWidth);
             this.Controls.Add(this.filterButton);
             this.Controls.Add(this.filterCheckBox);
             this.Controls.Add(this.filterComboBoxCpu);
-            this.Controls.Add(this.filterComboBoxResolution);
             this.Controls.Add(this.labelInconsistent);
             this.Controls.Add(this.labelCpu);
-            this.Controls.Add(this.labelResolution);
             this.Controls.Add(this.labelDepthFrom);
             this.Controls.Add(this.filterDepth);
             this.Controls.Add(this.labelDepthTo);
@@ -475,12 +567,18 @@
         private Bunifu.Framework.UI.BunifuSlider filterDepth;
         private System.Windows.Forms.Label labelDepthTo;
         private System.Windows.Forms.Label labelDepth;
-        private System.Windows.Forms.Label labelResolution;
         private System.Windows.Forms.Label labelCpu;
         private System.Windows.Forms.Label labelInconsistent;
-        private System.Windows.Forms.ComboBox filterComboBoxResolution;
         private System.Windows.Forms.ComboBox filterComboBoxCpu;
         private Bunifu.Framework.UI.BunifuCheckbox filterCheckBox;
         private Bunifu.Framework.UI.BunifuFlatButton filterButton;
+        private System.Windows.Forms.Label labelResolutionWidthFrom;
+        private Bunifu.Framework.UI.BunifuSlider filterResolutionWidth;
+        private System.Windows.Forms.Label labelResolutionWidthTo;
+        private System.Windows.Forms.Label labelResolutionWidth;
+        private System.Windows.Forms.Label labelResolutionHeightFrom;
+        private Bunifu.Framework.UI.BunifuSlider filterResolutionHeight;
+        private System.Windows.Forms.Label labelResolutionHeightTo;
+        private System.Windows.Forms.Label labelResolutionHeight;
     }
 }

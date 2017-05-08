@@ -30,8 +30,9 @@ namespace Laptop_Database
             int maxWidth = 500;
             int maxHeight = 60;
             int maxDepth = 400;
-            List<String> resolutions = new List<string> { "" };
-            List<String> cpus = new List<string> { "" };
+            int maxResolutionWidth = 4096;
+            int maxResolutionHeight = 2160;
+            List<String> cpus = new List<string> { "Intel Core i7", "Intel Core i3", "AMD RYZEN 7 1800X" };
 
             // RAM
             filterRam.MaximumValue = maxRam;
@@ -60,11 +61,15 @@ namespace Laptop_Database
             filterDepth.Value = filterDepth.MaximumValue;
             labelDepthTo.Text = filterDepth.Value.ToString() + " " + sizeUnit;
 
-            // Resolution
-            foreach (String resolution in resolutions)
-            {
-                filterComboBoxResolution.Items.Add(resolution);
-            }
+            // Resolution width
+            filterResolutionWidth.MaximumValue = maxResolutionWidth;
+            filterResolutionWidth.Value = filterResolutionWidth.MaximumValue;
+            labelResolutionWidthTo.Text = filterResolutionWidth.Value.ToString() + " " + resolutionUnit;
+
+            // Resolution height
+            filterResolutionHeight.MaximumValue = maxResolutionHeight;
+            filterResolutionHeight.Value = filterResolutionHeight.MaximumValue;
+            labelResolutionHeightTo.Text = filterResolutionHeight.Value.ToString() + " " + resolutionUnit;
 
             // CPU
             foreach (String cpu in cpus)
@@ -138,6 +143,7 @@ namespace Laptop_Database
         private String ramUnit = "GB";
         private String weightUnit = "Kg";
         private String sizeUnit = "mm";
+        private String resolutionUnit = "px";
 
         private void FilterRam_ValueChanged(object sender, EventArgs e)
         {
@@ -165,6 +171,16 @@ namespace Laptop_Database
             labelDepthTo.Text = filterDepth.Value.ToString() + " " + sizeUnit;
         }
 
+        private void FilterResolutionWidth_ValueChanged(object sender, EventArgs e)
+        {
+            labelResolutionWidthTo.Text = filterResolutionWidth.Value.ToString() + " " + resolutionUnit;
+        }
+
+        private void FilterResolutionHeight_ValueChanged(object sender, EventArgs e)
+        {
+            labelResolutionHeightTo.Text = filterResolutionHeight.Value.ToString() + " " + resolutionUnit;
+        }
+
         /// <summary>
         /// Called hwn form closing
         /// </summary>
@@ -177,6 +193,5 @@ namespace Laptop_Database
         }
 
         #endregion Autocalled functions (Dont need to change)
-
     }
 }
