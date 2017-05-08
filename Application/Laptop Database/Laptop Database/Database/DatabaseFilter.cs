@@ -16,13 +16,13 @@ namespace Laptop_Database.Database
         public int? width { get; set; }
         public int? height { get; set; }
         public int? depth { get; set; }
-        public int? resolutionHeight { get; set; }
         public int? resolutionWidth { get; set; }
+        public int? resolutionHeight { get; set; }
         public String cpu { get; set; }
         public bool inconsistent { get; set; }
         public DatabaseFilter(int? ram, int? weightLower, int? weightUpper,
-            int? width, int? height, int? depth,
-            int? resolutionHeight, int? resolutionWidth, String cpu, bool inconsistent)
+            int? width, int? height, int? depth, int? resolutionWidth,
+             int? resolutionHeight, String cpu, bool inconsistent)
         {
             this.ram = ram;
             this.weightLower = weightLower;
@@ -30,8 +30,8 @@ namespace Laptop_Database.Database
             this.width = width;
             this.height = height;
             this.depth = depth;
-            this.resolutionHeight = resolutionHeight;
             this.resolutionWidth = resolutionWidth;
+            this.resolutionHeight = resolutionHeight;
             this.cpu = cpu;
             this.inconsistent = inconsistent;
         }
@@ -53,8 +53,8 @@ namespace Laptop_Database.Database
                     this.width = (fields[3] == "") ? (int?)null : Convert.ToInt32(fields[3]);
                     this.height = (fields[4] == "") ? (int?)null : Convert.ToInt32(fields[4]);
                     this.depth = (fields[5] == "") ? (int?)null : Convert.ToInt32(fields[5]);
-                    this.resolutionHeight = (fields[6] == "") ? (int?)null : Convert.ToInt32(fields[6]);
-                    this.resolutionWidth = (fields[7] == "") ? (int?)null : Convert.ToInt32(fields[7]);
+                    this.resolutionWidth = (fields[6] == "") ? (int?)null : Convert.ToInt32(fields[7]);
+                    this.resolutionHeight = (fields[7] == "") ? (int?)null : Convert.ToInt32(fields[6]);
                     this.cpu = (fields[8] == "") ? null : fields[8]; 
                     this.inconsistent = bool.Parse(fields[9]);
                 }
@@ -64,8 +64,8 @@ namespace Laptop_Database.Database
         public override string ToString()
         {
             return String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}",
-                ram, weightLower, weightUpper, width, height, depth, resolutionHeight,
-                resolutionWidth, cpu, inconsistent);
+                ram, weightLower, weightUpper, width, height, depth, resolutionWidth,
+                resolutionHeight, cpu, inconsistent);
         }
     }
 }

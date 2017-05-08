@@ -116,9 +116,13 @@ namespace Laptop_Database
             if (filterDepth.Value != filterDepth.MaximumValue)
                 depth = filterDepth.Value;
 
-            //needs to be changed
             int? resolutionWidth = null;
+            if (filterResolutionWidth.Value != filterResolutionWidth.MaximumValue)
+                resolutionWidth = filterResolutionWidth.Value;
+
             int? resolutionHeight = null;
+            if (filterResolutionHeight.Value != filterResolutionHeight.MaximumValue)
+                resolutionHeight = filterResolutionHeight.Value;
 
             //filterComboBoxCpu.SelectedItem.ToString()
             String cpu = null;
@@ -141,7 +145,7 @@ namespace Laptop_Database
         #region Autocalled functions (Redrawing values when changing filters)
 
         private String ramUnit = "GB";
-        private String weightUnit = "Kg";
+        private String weightUnit = "kg";
         private String sizeUnit = "mm";
         private String resolutionUnit = "px";
 
