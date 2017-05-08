@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Laptop_Database.Hardware
 {
-    class Display
+    public class Display
     {
         public double diagonal { get; set; }
         public int width { get; set; }

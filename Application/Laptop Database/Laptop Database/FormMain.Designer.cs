@@ -37,25 +37,6 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_Search = new System.Windows.Forms.TabPage();
             this.dataGridView_Search = new System.Windows.Forms.DataGridView();
-            this.product_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.screen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.resolution_width = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.resolution_height = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.os = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gpu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cpu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cpu_cores = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ram = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ram_freq = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ram_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.drive = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.drive_capacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.color = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.height = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.width = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Depth = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.inconsistent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel_Search_Top = new System.Windows.Forms.Panel();
             this.topSearch = new Bunifu.Framework.UI.BunifuDropdown();
             this.customFilter = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -79,6 +60,25 @@
             this.label_DatabaseCreator = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.product_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.screen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.resolution_width = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.resolution_height = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.os = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gpu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cpu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cpu_cores = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ram = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ram_freq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ram_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.drive = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.drive_capacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.color = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.height = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.width = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Depth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.inconsistent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel_Menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_About)).BeginInit();
@@ -219,156 +219,6 @@
             this.dataGridView_Search.TabIndex = 0;
             this.dataGridView_Search.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridView_Search_CellFormatting);
             this.dataGridView_Search.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DataGridView_Search_DataBindingComplete);
-            // 
-            // product_number
-            // 
-            this.product_number.DataPropertyName = "serial";
-            this.product_number.HeaderText = "Product Number";
-            this.product_number.Name = "product_number";
-            this.product_number.ReadOnly = true;
-            // 
-            // screen
-            // 
-            this.screen.DataPropertyName = "display.diagonal";
-            this.screen.HeaderText = "Screen";
-            this.screen.Name = "screen";
-            this.screen.ReadOnly = true;
-            this.screen.Width = 66;
-            // 
-            // resolution_width
-            // 
-            this.resolution_width.DataPropertyName = "display.width";
-            this.resolution_width.HeaderText = "Resolution Width";
-            this.resolution_width.Name = "resolution_width";
-            this.resolution_width.ReadOnly = true;
-            this.resolution_width.Width = 104;
-            // 
-            // resolution_height
-            // 
-            this.resolution_height.DataPropertyName = "display.height";
-            this.resolution_height.HeaderText = "Resolution Height";
-            this.resolution_height.Name = "resolution_height";
-            this.resolution_height.ReadOnly = true;
-            this.resolution_height.Width = 106;
-            // 
-            // os
-            // 
-            this.os.DataPropertyName = "os.label";
-            this.os.HeaderText = "OS";
-            this.os.Name = "os";
-            this.os.ReadOnly = true;
-            this.os.Width = 47;
-            // 
-            // gpu
-            // 
-            this.gpu.DataPropertyName = "gpu.type";
-            this.gpu.HeaderText = "GPU";
-            this.gpu.Name = "gpu";
-            this.gpu.ReadOnly = true;
-            this.gpu.Width = 55;
-            // 
-            // cpu
-            // 
-            this.cpu.DataPropertyName = "cpu.type";
-            this.cpu.HeaderText = "CPU";
-            this.cpu.Name = "cpu";
-            this.cpu.ReadOnly = true;
-            this.cpu.Width = 54;
-            // 
-            // cpu_cores
-            // 
-            this.cpu_cores.DataPropertyName = "cpu.number_cores";
-            this.cpu_cores.HeaderText = "Cores";
-            this.cpu_cores.Name = "cpu_cores";
-            this.cpu_cores.ReadOnly = true;
-            this.cpu_cores.Width = 59;
-            // 
-            // ram
-            // 
-            this.ram.DataPropertyName = "ram.type";
-            this.ram.HeaderText = "RAM";
-            this.ram.Name = "ram";
-            this.ram.ReadOnly = true;
-            this.ram.Width = 56;
-            // 
-            // ram_freq
-            // 
-            this.ram_freq.DataPropertyName = "ram.frequency";
-            this.ram_freq.HeaderText = "Frequency";
-            this.ram_freq.Name = "ram_freq";
-            this.ram_freq.ReadOnly = true;
-            this.ram_freq.Width = 82;
-            // 
-            // ram_size
-            // 
-            this.ram_size.DataPropertyName = "ram.size";
-            this.ram_size.HeaderText = "Size";
-            this.ram_size.Name = "ram_size";
-            this.ram_size.ReadOnly = true;
-            this.ram_size.Width = 52;
-            // 
-            // drive
-            // 
-            this.drive.DataPropertyName = "hdd.type";
-            this.drive.HeaderText = "Drive";
-            this.drive.Name = "drive";
-            this.drive.ReadOnly = true;
-            this.drive.Width = 57;
-            // 
-            // drive_capacity
-            // 
-            this.drive_capacity.DataPropertyName = "hdd.size";
-            this.drive_capacity.HeaderText = "Capacity";
-            this.drive_capacity.Name = "drive_capacity";
-            this.drive_capacity.ReadOnly = true;
-            this.drive_capacity.Width = 73;
-            // 
-            // color
-            // 
-            this.color.DataPropertyName = "color";
-            this.color.HeaderText = "Color";
-            this.color.Name = "color";
-            this.color.ReadOnly = true;
-            this.color.Width = 56;
-            // 
-            // height
-            // 
-            this.height.DataPropertyName = "height";
-            this.height.HeaderText = "Height";
-            this.height.Name = "height";
-            this.height.ReadOnly = true;
-            this.height.Width = 63;
-            // 
-            // width
-            // 
-            this.width.DataPropertyName = "width";
-            this.width.HeaderText = "Width";
-            this.width.Name = "width";
-            this.width.ReadOnly = true;
-            this.width.Width = 60;
-            // 
-            // Depth
-            // 
-            this.Depth.DataPropertyName = "depth";
-            this.Depth.HeaderText = "Depth";
-            this.Depth.Name = "Depth";
-            this.Depth.ReadOnly = true;
-            this.Depth.Width = 61;
-            // 
-            // weight
-            // 
-            this.weight.DataPropertyName = "weight";
-            this.weight.HeaderText = "Weight";
-            this.weight.Name = "weight";
-            this.weight.ReadOnly = true;
-            this.weight.Width = 66;
-            // 
-            // inconsistent
-            // 
-            this.inconsistent.HeaderText = "Inconsistent";
-            this.inconsistent.Name = "inconsistent";
-            this.inconsistent.ReadOnly = true;
-            this.inconsistent.Width = 89;
             // 
             // panel_Search_Top
             // 
@@ -645,6 +495,157 @@
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker_DoWork);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker_RunWorkerCompleted);
             // 
+            // product_number
+            // 
+            this.product_number.DataPropertyName = "serial";
+            this.product_number.HeaderText = "Product Number";
+            this.product_number.Name = "product_number";
+            this.product_number.ReadOnly = true;
+            // 
+            // screen
+            // 
+            this.screen.DataPropertyName = "display.diagonal";
+            this.screen.HeaderText = "Screen";
+            this.screen.Name = "screen";
+            this.screen.ReadOnly = true;
+            this.screen.Width = 66;
+            // 
+            // resolution_width
+            // 
+            this.resolution_width.DataPropertyName = "display.width";
+            this.resolution_width.HeaderText = "Resolution Width";
+            this.resolution_width.Name = "resolution_width";
+            this.resolution_width.ReadOnly = true;
+            this.resolution_width.Width = 104;
+            // 
+            // resolution_height
+            // 
+            this.resolution_height.DataPropertyName = "display.height";
+            this.resolution_height.HeaderText = "Resolution Height";
+            this.resolution_height.Name = "resolution_height";
+            this.resolution_height.ReadOnly = true;
+            this.resolution_height.Width = 106;
+            // 
+            // os
+            // 
+            this.os.DataPropertyName = "os.label";
+            this.os.HeaderText = "OS";
+            this.os.Name = "os";
+            this.os.ReadOnly = true;
+            this.os.Width = 47;
+            // 
+            // gpu
+            // 
+            this.gpu.DataPropertyName = "gpu.type";
+            this.gpu.HeaderText = "GPU";
+            this.gpu.Name = "gpu";
+            this.gpu.ReadOnly = true;
+            this.gpu.Width = 55;
+            // 
+            // cpu
+            // 
+            this.cpu.DataPropertyName = "cpu.type";
+            this.cpu.HeaderText = "CPU";
+            this.cpu.Name = "cpu";
+            this.cpu.ReadOnly = true;
+            this.cpu.Width = 54;
+            // 
+            // cpu_cores
+            // 
+            this.cpu_cores.DataPropertyName = "cpu.number_cores";
+            this.cpu_cores.HeaderText = "Cores";
+            this.cpu_cores.Name = "cpu_cores";
+            this.cpu_cores.ReadOnly = true;
+            this.cpu_cores.Width = 59;
+            // 
+            // ram
+            // 
+            this.ram.DataPropertyName = "ram.type";
+            this.ram.HeaderText = "RAM";
+            this.ram.Name = "ram";
+            this.ram.ReadOnly = true;
+            this.ram.Width = 56;
+            // 
+            // ram_freq
+            // 
+            this.ram_freq.DataPropertyName = "ram.frequency";
+            this.ram_freq.HeaderText = "Frequency";
+            this.ram_freq.Name = "ram_freq";
+            this.ram_freq.ReadOnly = true;
+            this.ram_freq.Width = 82;
+            // 
+            // ram_size
+            // 
+            this.ram_size.DataPropertyName = "ram.size";
+            this.ram_size.HeaderText = "Size";
+            this.ram_size.Name = "ram_size";
+            this.ram_size.ReadOnly = true;
+            this.ram_size.Width = 52;
+            // 
+            // drive
+            // 
+            this.drive.DataPropertyName = "hdd.type";
+            this.drive.HeaderText = "Drive";
+            this.drive.Name = "drive";
+            this.drive.ReadOnly = true;
+            this.drive.Width = 57;
+            // 
+            // drive_capacity
+            // 
+            this.drive_capacity.DataPropertyName = "hdd.size";
+            this.drive_capacity.HeaderText = "Capacity";
+            this.drive_capacity.Name = "drive_capacity";
+            this.drive_capacity.ReadOnly = true;
+            this.drive_capacity.Width = 73;
+            // 
+            // color
+            // 
+            this.color.DataPropertyName = "color";
+            this.color.HeaderText = "Color";
+            this.color.Name = "color";
+            this.color.ReadOnly = true;
+            this.color.Width = 56;
+            // 
+            // height
+            // 
+            this.height.DataPropertyName = "height";
+            this.height.HeaderText = "Height";
+            this.height.Name = "height";
+            this.height.ReadOnly = true;
+            this.height.Width = 63;
+            // 
+            // width
+            // 
+            this.width.DataPropertyName = "width";
+            this.width.HeaderText = "Width";
+            this.width.Name = "width";
+            this.width.ReadOnly = true;
+            this.width.Width = 60;
+            // 
+            // Depth
+            // 
+            this.Depth.DataPropertyName = "depth";
+            this.Depth.HeaderText = "Depth";
+            this.Depth.Name = "Depth";
+            this.Depth.ReadOnly = true;
+            this.Depth.Width = 61;
+            // 
+            // weight
+            // 
+            this.weight.DataPropertyName = "weight";
+            this.weight.HeaderText = "Weight";
+            this.weight.Name = "weight";
+            this.weight.ReadOnly = true;
+            this.weight.Width = 66;
+            // 
+            // inconsistent
+            // 
+            this.inconsistent.DataPropertyName = "consistency";
+            this.inconsistent.HeaderText = "Inconsistent";
+            this.inconsistent.Name = "inconsistent";
+            this.inconsistent.ReadOnly = true;
+            this.inconsistent.Width = 89;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -713,6 +714,10 @@
         private System.Windows.Forms.Panel panel_Add_DragAndDrop;
         private System.Windows.Forms.Panel panel_Result;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Label label_NumberOfAdded;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private Bunifu.Framework.UI.BunifuDropdown topSearch;
+        private Bunifu.Framework.UI.BunifuFlatButton customFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_number;
         private System.Windows.Forms.DataGridViewTextBoxColumn screen;
         private System.Windows.Forms.DataGridViewTextBoxColumn resolution_width;
@@ -732,10 +737,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Depth;
         private System.Windows.Forms.DataGridViewTextBoxColumn weight;
         private System.Windows.Forms.DataGridViewTextBoxColumn inconsistent;
-        private System.Windows.Forms.Label label_NumberOfAdded;
-        private System.ComponentModel.BackgroundWorker backgroundWorker;
-        private Bunifu.Framework.UI.BunifuDropdown topSearch;
-        private Bunifu.Framework.UI.BunifuFlatButton customFilter;
     }
 }
 

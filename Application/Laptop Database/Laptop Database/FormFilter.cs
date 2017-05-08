@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Laptop_Database
 {
@@ -32,7 +33,7 @@ namespace Laptop_Database
             int maxDepth = 400;
             int maxResolutionWidth = 4096;
             int maxResolutionHeight = 2160;
-            List<String> cpus = new List<string> { "Intel Core i7", "Intel Core i3", "AMD RYZEN 7 1800X" };
+            List<string> cpus = formMain.laptopList.Select(laptop => laptop.cpu.type).Distinct().ToList();
 
             // RAM
             filterRam.MaximumValue = maxRam;
@@ -72,6 +73,7 @@ namespace Laptop_Database
             labelResolutionHeightTo.Text = filterResolutionHeight.Value.ToString() + " " + resolutionUnit;
 
             // CPU
+            filterComboBoxCpu.SelectedIndex = 0;
             foreach (String cpu in cpus)
             {
                 filterComboBoxCpu.Items.Add(cpu);
@@ -116,12 +118,17 @@ namespace Laptop_Database
             if (filterDepth.Value != filterDepth.MaximumValue)
                 depth = filterDepth.Value;
 
-            //needs to be changed
             int? resolutionWidth = null;
-            int? resolutionHeight = null;
+            if (filterResolutionWidth.Value != filterResolutionWidth.MaximumValue)
+                resolutionWidth = filterResolutionWidth.Value;
 
-            //filterComboBoxCpu.SelectedItem.ToString()
+            int? resolutionHeight = null;
+            if (filterResolutionHeight.Value != filterResolutionHeight.MaximumValue)
+                resolutionHeight = filterResolutionHeight.Value;
+
             String cpu = null;
+            if (!filterComboBoxCpu.SelectedItem.ToString().Equals("any"))
+                cpu = filterComboBoxCpu.SelectedItem.ToString();
 
             bool inconsistent = filterCheckBox.Checked;
 
@@ -141,7 +148,7 @@ namespace Laptop_Database
         #region Autocalled functions (Redrawing values when changing filters)
 
         private String ramUnit = "GB";
-        private String weightUnit = "Kg";
+        private String weightUnit = "kg";
         private String sizeUnit = "mm";
         private String resolutionUnit = "px";
 

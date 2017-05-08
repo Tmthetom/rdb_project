@@ -20,7 +20,7 @@ namespace Laptop_Database
 
         public DatabaseFilter currentFilter = null;
         public List<DatabaseFilter> filterList = new List<DatabaseFilter>();
-        private List<Laptop> laptopList;
+        public List<Laptop> laptopList = new List<Laptop>();
         private BindingList<Laptop> listBinding;
 
         public FormMain()
@@ -109,6 +109,17 @@ namespace Laptop_Database
         /// <param name="filePath"></param>
         void FileLoaded(string filePath)
         {
+            backgroundWorker.RunWorkerAsync(filePath);
+        }
+
+        /// <summary>
+        /// When called, runs another thread with data import
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            String filePath = (String)e.Argument;
             String extension = filePath.Substring(filePath.LastIndexOf("."), filePath.Length - filePath.LastIndexOf("."));
             switch (extension)
             {
@@ -124,23 +135,6 @@ namespace Laptop_Database
                 default:
                     break;
             }
-            listBinding = new BindingList<Laptop>(laptopList);
-
-            var source = new BindingSource()
-            {
-                DataSource = listBinding
-            };
-            dataGridView_Search.DataSource = source;
-        }
-
-        /// <summary>
-        /// When called, runs another thread with data import
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-
         }
 
         /// <summary>
@@ -150,6 +144,12 @@ namespace Laptop_Database
         /// <param name="e"></param>
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            listBinding = new BindingList<Laptop>(laptopList);
+            var source = new BindingSource()
+            {
+                DataSource = listBinding
+            };
+            dataGridView_Search.DataSource = source;
             //ShowNumberOfAddedRows(numberOfNewRows);
         }
 
@@ -277,8 +277,14 @@ namespace Laptop_Database
                 Laptop laptop = dgvr.DataBoundItem as Laptop;
                 if (laptop != null)
                 {
-                    if (laptop.weight == 3)
+                    if (laptop.consistency) { 
                         dgvr.DefaultCellStyle.BackColor = inconsistentRow;
+                        for (int i = 0; i < 19; i++ )
+                        {
+                            if (laptop.consistencies[i])
+                                dgvr.Cells[i].Style.BackColor = inconsistentCell;
+                        }
+                    }
                 }
             }
         }

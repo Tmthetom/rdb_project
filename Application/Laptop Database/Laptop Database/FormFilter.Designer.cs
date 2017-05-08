@@ -341,8 +341,12 @@
             // 
             // filterComboBoxCpu
             // 
+            this.filterComboBoxCpu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.filterComboBoxCpu.FormattingEnabled = true;
+            this.filterComboBoxCpu.Items.AddRange(new object[] {
+            "any"});
             this.filterComboBoxCpu.Location = new System.Drawing.Point(249, 280);
+            this.filterComboBoxCpu.MaxDropDownItems = 20;
             this.filterComboBoxCpu.Name = "filterComboBoxCpu";
             this.filterComboBoxCpu.Size = new System.Drawing.Size(334, 21);
             this.filterComboBoxCpu.TabIndex = 37;
@@ -536,6 +540,7 @@
             this.Controls.Add(this.labelRam);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormFilter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Filters";

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Laptop_Database.Hardware
 {
-    class Data
+    public class Data
     {
         public String serial { get; set; }
         public String screen { get; set; }
