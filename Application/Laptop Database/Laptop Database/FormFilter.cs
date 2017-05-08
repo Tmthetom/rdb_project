@@ -18,7 +18,6 @@ namespace Laptop_Database
             this.formMain = formMain;
             InitializeComponent();
             InitializeValues();
-            filterComboBoxCpu.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -74,6 +73,7 @@ namespace Laptop_Database
             labelResolutionHeightTo.Text = filterResolutionHeight.Value.ToString() + " " + resolutionUnit;
 
             // CPU
+            filterComboBoxCpu.SelectedIndex = 0;
             foreach (String cpu in cpus)
             {
                 filterComboBoxCpu.Items.Add(cpu);

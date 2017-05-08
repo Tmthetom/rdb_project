@@ -277,8 +277,14 @@ namespace Laptop_Database
                 Laptop laptop = dgvr.DataBoundItem as Laptop;
                 if (laptop != null)
                 {
-                    if (laptop.weight == 3)
+                    if (laptop.consistency) { 
                         dgvr.DefaultCellStyle.BackColor = inconsistentRow;
+                        for (int i = 0; i < 19; i++ )
+                        {
+                            if (laptop.consistencies[i])
+                                dgvr.Cells[i].Style.BackColor = inconsistentCell;
+                        }
+                    }
                 }
             }
         }

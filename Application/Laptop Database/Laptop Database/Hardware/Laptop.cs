@@ -64,6 +64,7 @@ namespace Laptop_Database.Hardware
             this.width = width;
             this.depth = depth;
             this.weight = weight;
+            this.consistencies = new bool[18];
         }
 
         public Laptop(Data raw)
@@ -82,6 +83,7 @@ namespace Laptop_Database.Hardware
             this.width = Convert.ToInt32(raw.width);
             this.depth = Convert.ToInt32(raw.depth);
             this.weight = Convert.ToInt32(raw.weight);
+            this.consistencies = new bool[18];
         }
 
     }
