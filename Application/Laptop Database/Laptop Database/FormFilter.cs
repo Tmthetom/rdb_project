@@ -18,6 +18,7 @@ namespace Laptop_Database
             this.formMain = formMain;
             InitializeComponent();
             InitializeValues();
+            filterComboBoxCpu.SelectedIndex = 0;
         }
 
         /// <summary>
