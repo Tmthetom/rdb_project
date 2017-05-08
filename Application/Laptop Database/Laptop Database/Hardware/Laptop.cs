@@ -23,6 +23,31 @@ namespace Laptop_Database.Hardware
         public float depth { get; set; }
         public float weight { get; set; }
 
+        /// <summary>
+        /// Format: 
+        /// color, width, height, depth, weight, 
+        /// display_diagonal, display_width, display_height, display_label, 
+        /// cpu_type, cpu_cores, 
+        /// ram_type, ram_frequency, ram_size, 
+        /// hdd_type, hdd_size, 
+        /// os_label, 
+        /// gpu_type
+        /// </summary>
+        public bool[] consistencies { get; set; }
+        public bool consistency
+        {
+            get
+            {
+                for (int i = 0; i < consistencies.Length; i++)
+                {
+                    if (consistencies[i]) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
         public Laptop(String serial, Display display, CPU cpu,
             RAM ram, OS os, HDD hdd, GPU gpu, String color,
             float height, float width, float depth, float weight)
