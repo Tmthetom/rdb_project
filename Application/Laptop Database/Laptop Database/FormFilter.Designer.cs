@@ -62,6 +62,7 @@
             this.filterResolutionHeight = new Bunifu.Framework.UI.BunifuSlider();
             this.labelResolutionHeightTo = new System.Windows.Forms.Label();
             this.labelResolutionHeight = new System.Windows.Forms.Label();
+            this.resetButton = new Bunifu.Framework.UI.BunifuFlatButton();
             this.SuspendLayout();
             // 
             // labelRam
@@ -390,7 +391,7 @@
             this.filterButton.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.filterButton.OnHoverTextColor = System.Drawing.Color.White;
             this.filterButton.selected = false;
-            this.filterButton.Size = new System.Drawing.Size(629, 48);
+            this.filterButton.Size = new System.Drawing.Size(556, 48);
             this.filterButton.TabIndex = 39;
             this.filterButton.Text = "Use filter";
             this.filterButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -498,6 +499,41 @@
             this.labelResolutionHeight.TabIndex = 44;
             this.labelResolutionHeight.Text = "Resolution Height";
             // 
+            // resetButton
+            // 
+            this.resetButton.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.resetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.resetButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.resetButton.BorderRadius = 0;
+            this.resetButton.ButtonText = "Reset";
+            this.resetButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.resetButton.DisabledColor = System.Drawing.Color.Gray;
+            this.resetButton.Iconcolor = System.Drawing.Color.Transparent;
+            this.resetButton.Iconimage = null;
+            this.resetButton.Iconimage_right = null;
+            this.resetButton.Iconimage_right_Selected = null;
+            this.resetButton.Iconimage_Selected = null;
+            this.resetButton.IconMarginLeft = 0;
+            this.resetButton.IconMarginRight = 0;
+            this.resetButton.IconRightVisible = true;
+            this.resetButton.IconRightZoom = 0D;
+            this.resetButton.IconVisible = true;
+            this.resetButton.IconZoom = 90D;
+            this.resetButton.IsTab = false;
+            this.resetButton.Location = new System.Drawing.Point(594, 352);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.resetButton.OnHovercolor = System.Drawing.Color.Maroon;
+            this.resetButton.OnHoverTextColor = System.Drawing.Color.White;
+            this.resetButton.selected = false;
+            this.resetButton.Size = new System.Drawing.Size(63, 48);
+            this.resetButton.TabIndex = 48;
+            this.resetButton.Text = "Reset";
+            this.resetButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.resetButton.Textcolor = System.Drawing.Color.White;
+            this.resetButton.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resetButton.Click += new System.EventHandler(this.ResetButton_Click);
+            // 
             // FormFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -505,6 +541,7 @@
             this.BackgroundImage = global::Laptop_Database.Properties.Resources.CodeTranslation;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(683, 419);
+            this.Controls.Add(this.resetButton);
             this.Controls.Add(this.labelResolutionHeightFrom);
             this.Controls.Add(this.filterResolutionHeight);
             this.Controls.Add(this.labelResolutionHeightTo);
@@ -585,5 +622,6 @@
         private Bunifu.Framework.UI.BunifuSlider filterResolutionHeight;
         private System.Windows.Forms.Label labelResolutionHeightTo;
         private System.Windows.Forms.Label labelResolutionHeight;
+        private Bunifu.Framework.UI.BunifuFlatButton resetButton;
     }
 }

@@ -25,7 +25,9 @@ namespace Laptop_Database
         /// </summary>
         private void InitializeValues()
         {
-            // Some example data
+            // Load values for filters
+
+            /* START OF: THIS PART MUST BE REPLACED WITH REAL VALUES */
             int maxRam = 64;
             int maxWeight = 5;
             int maxWidth = 500;
@@ -33,6 +35,8 @@ namespace Laptop_Database
             int maxDepth = 400;
             int maxResolutionWidth = 4096;
             int maxResolutionHeight = 2160;
+            /* END OF: THIS PART MUST BE REPLACED WITH REAL VALUES */
+
             List<string> cpus = formMain.laptopList.Select(laptop => laptop.cpu.type).Distinct().ToList();
 
             // RAM
@@ -199,6 +203,17 @@ namespace Laptop_Database
             this.Hide();
         }
 
+        /// <summary>
+        /// Reset all values into default state
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            InitializeValues();
+        }
+
         #endregion Autocalled functions (Dont need to change)
+
     }
 }
