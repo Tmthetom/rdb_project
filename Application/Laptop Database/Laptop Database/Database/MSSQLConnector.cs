@@ -50,9 +50,9 @@ namespace Laptop_Database.Database
             }
         }
 
-        public override Dictionary<Laptop, bool[]> get()
+        public override List<Laptop> get()
         {
-            Dictionary<Laptop, bool[]> laptops = new Dictionary<Laptop, bool[]>();
+            List<Laptop> laptops = new List<Laptop>();
             SqlDataReader reader = null;
             if (success)
             {
@@ -98,8 +98,8 @@ namespace Laptop_Database.Database
                     {
                         consistencies[i] = Boolean.Parse("" + reader[i + 19]);
                     }
-
-                    laptops.Add(temp_laptop, consistencies);
+                    temp_laptop.consistencies = consistencies;
+                    laptops.Add(temp_laptop);
                 }
                 reader.Close();
                 return laptops;
@@ -107,9 +107,9 @@ namespace Laptop_Database.Database
             return null;
         }
 
-        public override Dictionary<Laptop, bool[]> get(string condition)
+        public override List<Laptop> get(string condition)
         {
-            Dictionary<Laptop, bool[]> laptops = new Dictionary<Laptop, bool[]>();
+            List<Laptop> laptops = new List<Laptop>();
             SqlDataReader reader = null;
             if (success)
             {
@@ -156,8 +156,8 @@ namespace Laptop_Database.Database
                     {
                         consistencies[i] = Boolean.Parse("" + reader[i + 19]);
                     }
-
-                    laptops.Add(temp_laptop, consistencies);
+                    temp_laptop.consistencies = consistencies;
+                    laptops.Add(temp_laptop);
                 }
 
                 SqlCommand comm2 = new SqlCommand("INSERT INTO top_search(pattern) VALUES(@pattern)", connection);
