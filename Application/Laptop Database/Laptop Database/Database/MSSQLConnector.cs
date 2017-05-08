@@ -11,6 +11,7 @@ namespace Laptop_Database.Database
     class MSSQLConnector : IDBConnector
     {
         private List<string> messages = new List<string>();
+        private bool multiple = false;
         public override void createConnection()
         {
             if(server.Equals("") || database.Equals(""))
@@ -160,7 +161,7 @@ namespace Laptop_Database.Database
                 }
 
                 SqlCommand comm2 = new SqlCommand("INSERT INTO top_search(pattern) VALUES(@pattern)", connection);
-                comm2.Parameters.Add("@pattern", condition);
+                comm2.Parameters.AddWithValue("@pattern", condition);
                 comm2.ExecuteNonQuery();
             }
             reader.Close();
@@ -170,16 +171,21 @@ namespace Laptop_Database.Database
         public override List<string> insert(List<Laptop> laptops, string hash)
         {
             messages.Clear();
+            multiple = true;
             foreach(Hardware.Laptop laptop in laptops)
             {
                 insert(laptop, hash);
             }
+            multiple = false;
             return messages;
         }
 
         public override List<string> insert(Laptop laptop, string hash)
         {
-            messages.Clear();
+            if (!multiple)
+            {
+                messages.Clear();
+            }
             SqlCommand comm = new SqlCommand("INSERT INTO v_notebooks([hash],[producer_code],[color],[width],[height],"+
                                                                      "[depth],[weight],[display_diagonal],[display_width],"+
                                                                      "[display_height],[display_label],[cpu_type],[cpu_cores],"+
@@ -189,28 +195,53 @@ namespace Laptop_Database.Database
                                                                      "@display_height,@display_label,@cpu_type,@cpu_cores,"+
                                                                      "@ram_type,@ram_frequency,@ram_size,@hdd_type,@hdd_size,"+
                                                                      "@os_label,@gpu_type)", connection);
-            comm.Parameters.Add("@hash",hash);
-            comm.Parameters.Add("@serial",laptop.serial);
-            comm.Parameters.Add("@color",laptop.color);
-            comm.Parameters.Add("@width",laptop.width);
-            comm.Parameters.Add("@height",laptop.height);
-            comm.Parameters.Add("@depth",laptop.depth);
-            comm.Parameters.Add("@weight",laptop.weight);
-            comm.Parameters.Add("@display_diagonal",laptop.display.diagonal);
-            comm.Parameters.Add("@display_width",laptop.display.width);
-            comm.Parameters.Add("@display_height",laptop.display.height);
-            comm.Parameters.Add("@display_label",laptop.display.label);
-            comm.Parameters.Add("@cpu_type",laptop.cpu.type);
-            comm.Parameters.Add("@cpu_cores",laptop.cpu.number_cores);
-            comm.Parameters.Add("@ram_type",laptop.ram.type);
-            comm.Parameters.Add("@ram_frequency",laptop.ram.frequency);
-            comm.Parameters.Add("@ram_size",laptop.ram.size);
-            comm.Parameters.Add("@hdd_type",laptop.hdd.type);
-            comm.Parameters.Add("@hdd_size",laptop.hdd.size);
-            comm.Parameters.Add("@os_label",laptop.os.label);
-            comm.Parameters.Add("@gpu_type",laptop.gpu.type);
+            comm.Parameters.AddWithValue("@hash",hash);
+            comm.Parameters.AddWithValue("@serial",laptop.serial);
+            comm.Parameters.AddWithValue("@color",laptop.color);
+            comm.Parameters.AddWithValue("@width",laptop.width);
+            comm.Parameters.AddWithValue("@height",laptop.height);
+            comm.Parameters.AddWithValue("@depth",laptop.depth);
+            comm.Parameters.AddWithValue("@weight",laptop.weight);
+            comm.Parameters.AddWithValue("@display_diagonal",laptop.display.diagonal);
+            comm.Parameters.AddWithValue("@display_width",laptop.display.width);
+            comm.Parameters.AddWithValue("@display_height",laptop.display.height);
+            comm.Parameters.AddWithValue("@display_label",laptop.display.label);
+            comm.Parameters.AddWithValue("@cpu_type",laptop.cpu.type);
+            comm.Parameters.AddWithValue("@cpu_cores",laptop.cpu.number_cores);
+            comm.Parameters.AddWithValue("@ram_type",laptop.ram.type);
+            comm.Parameters.AddWithValue("@ram_frequency",laptop.ram.frequency);
+            comm.Parameters.AddWithValue("@ram_size",laptop.ram.size);
+            comm.Parameters.AddWithValue("@hdd_type",laptop.hdd.type);
+            comm.Parameters.AddWithValue("@hdd_size",laptop.hdd.size);
+            comm.Parameters.AddWithValue("@os_label",laptop.os.label);
+            comm.Parameters.AddWithValue("@gpu_type",laptop.gpu.type);
             comm.ExecuteNonQuery();
             return messages;
+        }
+
+        public override void insertPattern(string pattern)
+        {
+            SqlCommand comm = new SqlCommand("INSERT INTO top_search(pattern) VALUES(@pattern)", connection);
+            comm.Parameters.AddWithValue("@pattern", pattern);
+            comm.ExecuteNonQuery();
+        }
+
+        public override List<string> getTopPattern(int numberOfPatterns)
+        {
+            if(numberOfPatterns < 1) {
+                return null;
+            }
+            if(!success) {
+                return null;
+            }
+            List<string> patterns = new List<string>(numberOfPatterns);
+            SqlCommand comm = new SqlCommand("SELECT TOP " + numberOfPatterns + " pattern FROM top_search ORDER BY count DESC", connection);
+            SqlDataReader reader = comm.ExecuteReader();
+            while(reader.Read()) {
+                patterns.Add("" + reader[0]);
+            }
+            reader.Close();
+            return patterns;
         }
 
         void Connection_InfoMessage(object sender, SqlInfoMessageEventArgs e)

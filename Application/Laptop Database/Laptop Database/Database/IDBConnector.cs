@@ -28,6 +28,10 @@ namespace Laptop_Database.Database
         public abstract Dictionary<Hardware.Laptop, bool[]> get(string condition);
         public abstract List<string> insert(Hardware.Laptop laptop, string hash);
         public abstract List<string> insert(List<Hardware.Laptop> laptops, string hash);
+
+        public abstract void insertPattern(string pattern);
+
+        public abstract List<string> getTopPattern(int numberOfPatterns);
         public static IDBConnector factory(string name)
         {
             switch(name)
