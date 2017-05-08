@@ -1,18 +1,15 @@
 ﻿using Laptop_Database.Database;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Laptop_Database
 {
-    public partial class FormFilter : Form
+    public partial class FormFilter : System.Windows.Forms.Form
     {
+
+        #region Initialization (Components load, Filters values load)
+
         private FormMain formMain;
 
         public FormFilter(FormMain formMain)
@@ -79,8 +76,12 @@ namespace Laptop_Database
             filterCheckBox.Checked = false;
         }
 
+        #endregion Initialization
+
+        #region Confirm button (Send filter to main form)
+
         /// <summary>
-        /// Called when button clicked
+        /// Send filter to main form
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -126,11 +127,13 @@ namespace Laptop_Database
 
             formMain.currentFilter = df;
             formMain.filterList.Add(df);
-            formMain.applyFilter();
+            formMain.ApplyFilter();
             this.Hide();
         }
 
-        #region Autocalled functions (Dont need to change)
+        #endregion Filter button
+
+        #region Autocalled functions (Redrawing values when changing filters)
 
         private String ramUnit = "GB";
         private String weightUnit = "Kg";

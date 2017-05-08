@@ -15,12 +15,13 @@ namespace Laptop_Database
 {
     public partial class FormMain : System.Windows.Forms.Form
     {
+
+        #region Initialization (Components load)
+
         public DatabaseFilter currentFilter = null;
         public List<DatabaseFilter> filterList = new List<DatabaseFilter>();
         private List<Laptop> laptopList;
         private BindingList<Laptop> listBinding;
-
-        #region Initialization
 
         public FormMain()
         {
@@ -28,12 +29,9 @@ namespace Laptop_Database
             dataGridView_Search.AutoGenerateColumns = false;
         }
 
-        #endregion Initialization
+        #endregion Initialization (Components load)
 
-        #region Search
-
-        private Color inconsistentRow = Color.FromArgb(245, 245, 245);
-        private Color inconsistentCell = Color.FromArgb(220, 220, 220);
+        #region Search tab (Table, Filters)
 
         /// <summary>
         /// Called, when selected top filter changed.
@@ -42,7 +40,7 @@ namespace Laptop_Database
         /// <param name="e"></param>
         private void TopSearch_onItemSelected(object sender, EventArgs e)
         {
-            MessageBox.Show(topSearch.selectedValue.ToString());
+            ApplyFilter();
         }
 
         /// <summary>
@@ -56,9 +54,54 @@ namespace Laptop_Database
             formFilter.Show();
         }
 
-        #endregion Search
+        /// <summary>
+        /// Use selected filter on dataGridView
+        /// </summary>
+        public void ApplyFilter()
+        {
+            if (currentFilter != null && laptopList != null)
+            {
+                var source = new BindingSource();
+                listBinding = new BindingList<Laptop>(laptopList);
 
-        #region Import
+                if (currentFilter.ram != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.ram.size <= currentFilter.ram).ToList());
+
+                if (currentFilter.weightLower != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.weight >= currentFilter.weightLower).ToList());
+
+                if (currentFilter.weightUpper != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.weight <= currentFilter.weightUpper).ToList());
+
+                if (currentFilter.width != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.width <= currentFilter.width).ToList());
+
+                if (currentFilter.height != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.height <= currentFilter.height).ToList());
+
+                if (currentFilter.depth != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.depth <= currentFilter.depth).ToList());
+
+                if (currentFilter.resolutionWidth != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.display.width <= currentFilter.resolutionWidth).ToList());
+
+                if (currentFilter.resolutionHeight != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.display.height <= currentFilter.resolutionHeight).ToList());
+
+                if (currentFilter.cpu != null)
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.cpu.type.Equals(currentFilter.cpu)).ToList());
+
+                //inconsistent, not implemented
+                //listBinding = new BindingList<Laptop>(listBinding);
+
+                source.DataSource = listBinding;
+                dataGridView_Search.DataSource = source;
+            }
+        }
+
+        #endregion Search tab (Table, Filters)
+
+        #region Import tab (Drag&Drop, OpenFileDialog)
 
         /// <summary>
         /// Called when new file loaded through DragAndDrop or OpenFile in Add (Menu)
@@ -83,8 +126,10 @@ namespace Laptop_Database
             }
             listBinding = new BindingList<Laptop>(laptopList);
 
-            var source = new BindingSource();
-            source.DataSource = listBinding;
+            var source = new BindingSource()
+            {
+                DataSource = listBinding
+            };
             dataGridView_Search.DataSource = source;
         }
 
@@ -108,11 +153,11 @@ namespace Laptop_Database
             //ShowNumberOfAddedRows(numberOfNewRows);
         }
 
-        #endregion Import
+        #endregion Import tab (Drag&Drop, OpenFileDialog)
 
-        #region User Interface
+        #region User Interface (Animations, transitions, effects, formating, ...)
 
-        #region Menu
+        #region Tabs (Main menu buttons and their hovers, clicks and more)
 
         private Color color_Button_Normal = SystemColors.Highlight;
         private Color color_Button_Hover = SystemColors.HotTrack;
@@ -210,17 +255,36 @@ namespace Laptop_Database
 
         #endregion Buttons Click
 
-        #endregion Menu
+        #endregion Tabs (Main menu buttons and their hovers, clicks and more)
 
-        #region Search
+        #region Search tab (Formating)
 
-        #region Filters
+        #region Inconsistency (Coloring)
 
+        private Color inconsistentRow = Color.FromArgb(245, 245, 245);
+        private Color inconsistentCell = Color.FromArgb(220, 220, 220);
 
+        /// <summary>
+        /// When data binding complete
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataGridView_Search_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            DataGridView grid = (DataGridView)sender;
+            foreach (DataGridViewRow dgvr in grid.Rows)
+            {
+                Laptop laptop = dgvr.DataBoundItem as Laptop;
+                if (laptop != null)
+                {
+                    if (laptop.weight == 3)
+                        dgvr.DefaultCellStyle.BackColor = inconsistentRow;
+                }
+            }
+        }
+        #endregion Inconsistency (Coloring)
 
-        #endregion Filters
-
-        #region Data Formating
+        #region Cell formating
         /// <summary>
         /// Cell formating
         /// </summary>
@@ -245,25 +309,11 @@ namespace Laptop_Database
             }
 
         }
-        private void dataGridView_Search_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            DataGridView grid = (DataGridView)sender;
-            foreach (DataGridViewRow dgvr in grid.Rows)
-            {
-                Laptop laptop = dgvr.DataBoundItem as Laptop;
-                if (laptop != null)
-                {
-                    if (laptop.weight == 3)
-                        dgvr.DefaultCellStyle.BackColor = inconsistentRow;
-                }
-            }
-        }
+        #endregion Cell formating
 
-        #endregion Data Formating
+        #endregion Search tab (Formating)
 
-        #endregion Search
-
-        #region Add
+        #region Add (Drag&Drop, AddedRows)
 
         private Color leaveColor = Color.Transparent;
         private Color dragColor = Color.SkyBlue;
@@ -339,56 +389,9 @@ namespace Laptop_Database
             }
         }
 
-        #endregion Add
-
-        public void applyFilter()
-        {
-            if (currentFilter != null && laptopList != null)
-            {
-                var source = new BindingSource();
-                listBinding = new BindingList<Laptop>(laptopList);
-
-                if (currentFilter.ram!=null)
-                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.ram.size <= currentFilter.ram).ToList());
-
-                if (currentFilter.weightLower != null)
-                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.weight >= currentFilter.weightLower).ToList());
-
-                if (currentFilter.weightUpper != null)
-                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.weight <= currentFilter.weightUpper).ToList());
-
-                if (currentFilter.width != null)
-                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.width <= currentFilter.width).ToList());
-
-                if (currentFilter.height != null)
-                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.height <= currentFilter.height).ToList());
-
-                if (currentFilter.depth != null)
-                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.depth <= currentFilter.depth).ToList());
-
-                if (currentFilter.resolutionWidth != null)
-                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.display.width <= currentFilter.resolutionWidth).ToList());
-
-                if (currentFilter.resolutionHeight != null)
-                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.display.height <= currentFilter.resolutionHeight).ToList());
-
-                if (currentFilter.cpu != null)
-                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.cpu.type.Equals(currentFilter.cpu)).ToList());
-
-                //inconsistent, not implemented
-                //listBinding = new BindingList<Laptop>(listBinding);
-
-                source.DataSource = listBinding;
-                dataGridView_Search.DataSource = source;
-            }
-        }
-
+        #endregion Add (Drag&Drop, AddedRows)
 
         #endregion
 
-        private void pictureBox_Logo_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            applyFilter();
-        }
     }
 }

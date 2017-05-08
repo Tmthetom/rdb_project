@@ -121,7 +121,6 @@
             this.pictureBox_Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Logo.TabIndex = 6;
             this.pictureBox_Logo.TabStop = false;
-            this.pictureBox_Logo.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox_Logo_MouseDoubleClick);
             // 
             // pictureBox_About
             // 
@@ -219,7 +218,7 @@
             this.dataGridView_Search.Size = new System.Drawing.Size(729, 365);
             this.dataGridView_Search.TabIndex = 0;
             this.dataGridView_Search.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridView_Search_CellFormatting);
-            this.dataGridView_Search.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView_Search_DataBindingComplete);
+            this.dataGridView_Search.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DataGridView_Search_DataBindingComplete);
             // 
             // product_number
             // 

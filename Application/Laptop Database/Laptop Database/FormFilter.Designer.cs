@@ -167,9 +167,9 @@
             this.labelWidthFrom.ForeColor = System.Drawing.Color.White;
             this.labelWidthFrom.Location = new System.Drawing.Point(125, 101);
             this.labelWidthFrom.Name = "labelWidthFrom";
-            this.labelWidthFrom.Size = new System.Drawing.Size(36, 16);
+            this.labelWidthFrom.Size = new System.Drawing.Size(40, 16);
             this.labelWidthFrom.TabIndex = 18;
-            this.labelWidthFrom.Text = "0 cm";
+            this.labelWidthFrom.Text = "0 mm";
             // 
             // filterWidth
             // 
@@ -193,9 +193,9 @@
             this.labelWidthTo.ForeColor = System.Drawing.Color.White;
             this.labelWidthTo.Location = new System.Drawing.Point(540, 101);
             this.labelWidthTo.Name = "labelWidthTo";
-            this.labelWidthTo.Size = new System.Drawing.Size(43, 16);
+            this.labelWidthTo.Size = new System.Drawing.Size(47, 16);
             this.labelWidthTo.TabIndex = 16;
-            this.labelWidthTo.Text = "30 cm";
+            this.labelWidthTo.Text = "30 mm";
             // 
             // labelWidth
             // 
@@ -217,9 +217,9 @@
             this.labelHeightFrom.ForeColor = System.Drawing.Color.White;
             this.labelHeightFrom.Location = new System.Drawing.Point(125, 137);
             this.labelHeightFrom.Name = "labelHeightFrom";
-            this.labelHeightFrom.Size = new System.Drawing.Size(36, 16);
+            this.labelHeightFrom.Size = new System.Drawing.Size(40, 16);
             this.labelHeightFrom.TabIndex = 22;
-            this.labelHeightFrom.Text = "0 cm";
+            this.labelHeightFrom.Text = "0 mm";
             // 
             // filterHeight
             // 
@@ -243,9 +243,9 @@
             this.labelHeightTo.ForeColor = System.Drawing.Color.White;
             this.labelHeightTo.Location = new System.Drawing.Point(540, 137);
             this.labelHeightTo.Name = "labelHeightTo";
-            this.labelHeightTo.Size = new System.Drawing.Size(43, 16);
+            this.labelHeightTo.Size = new System.Drawing.Size(47, 16);
             this.labelHeightTo.TabIndex = 20;
-            this.labelHeightTo.Text = "25 cm";
+            this.labelHeightTo.Text = "25 mm";
             // 
             // labelHeight
             // 
@@ -267,9 +267,9 @@
             this.labelDepthFrom.ForeColor = System.Drawing.Color.White;
             this.labelDepthFrom.Location = new System.Drawing.Point(125, 173);
             this.labelDepthFrom.Name = "labelDepthFrom";
-            this.labelDepthFrom.Size = new System.Drawing.Size(36, 16);
+            this.labelDepthFrom.Size = new System.Drawing.Size(40, 16);
             this.labelDepthFrom.TabIndex = 26;
-            this.labelDepthFrom.Text = "0 cm";
+            this.labelDepthFrom.Text = "0 mm";
             // 
             // filterDepth
             // 
@@ -293,9 +293,9 @@
             this.labelDepthTo.ForeColor = System.Drawing.Color.White;
             this.labelDepthTo.Location = new System.Drawing.Point(540, 173);
             this.labelDepthTo.Name = "labelDepthTo";
-            this.labelDepthTo.Size = new System.Drawing.Size(36, 16);
+            this.labelDepthTo.Size = new System.Drawing.Size(40, 16);
             this.labelDepthTo.TabIndex = 24;
-            this.labelDepthTo.Text = "5 cm";
+            this.labelDepthTo.Text = "5 mm";
             // 
             // labelDepth
             // 
