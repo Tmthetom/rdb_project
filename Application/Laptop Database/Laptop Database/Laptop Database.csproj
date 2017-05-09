@@ -74,6 +74,7 @@
     <Compile Include="Database\MSSQLConnector.cs" />
     <Compile Include="DataParser\CSV.cs" />
     <Compile Include="DataParser\JSON.cs" />
+    <Compile Include="DataParser\MD5.cs" />
     <Compile Include="DataParser\XML.cs" />
     <Compile Include="FormFilter.cs">
       <SubType>Form</SubType>

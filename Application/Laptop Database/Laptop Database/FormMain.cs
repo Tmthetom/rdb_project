@@ -22,10 +22,13 @@ namespace Laptop_Database
         public List<DatabaseFilter> filterList = new List<DatabaseFilter>();
         public List<Laptop> laptopList = new List<Laptop>();
         private BindingList<Laptop> listBinding;
+        private String filePath;
 
         public FormMain()
         {
             InitializeComponent();
+            Database.MSSQLConnector connector = new MSSQLConnector();
+            connector.createConnection();
             dataGridView_Search.AutoGenerateColumns = false;
         }
 
@@ -109,6 +112,7 @@ namespace Laptop_Database
         /// <param name="filePath"></param>
         void FileLoaded(string filePath)
         {
+            this.filePath = filePath;
             backgroundWorker.RunWorkerAsync(filePath);
         }
 
@@ -144,6 +148,7 @@ namespace Laptop_Database
         /// <param name="e"></param>
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            String md5 = DataParser.MD5.checkMD5(filePath);
             listBinding = new BindingList<Laptop>(laptopList);
             var source = new BindingSource()
             {
