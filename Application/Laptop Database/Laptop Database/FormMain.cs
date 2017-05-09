@@ -19,14 +19,20 @@ namespace Laptop_Database
         #region Initialization (Components load)
 
         public DatabaseFilter currentFilter = null;
-        public List<DatabaseFilter> filterList = new List<DatabaseFilter>();
+        public List<string> topFilterList = new List<string>();
         public List<Laptop> laptopList = new List<Laptop>();
         private BindingList<Laptop> listBinding;
+        private String filePath;
+        public Database.MSSQLConnector connector = new MSSQLConnector();
 
         public FormMain()
         {
             InitializeComponent();
             dataGridView_Search.AutoGenerateColumns = false;
+
+            connector.createConnection();
+            RefreshFilterList();
+            BindData();
         }
 
         #endregion Initialization (Components load)
@@ -40,11 +46,20 @@ namespace Laptop_Database
         /// <param name="e"></param>
         private void TopSearch_onItemSelected(object sender, EventArgs e)
         {
+            if (!topSearch.selectedValue.Equals("no filter"))
+            {
+                currentFilter = new DatabaseFilter(topSearch.selectedValue);
+                connector.insertPattern(currentFilter.ToString());
+            }
+            else
+            {
+                   currentFilter = null;
+            }
             ApplyFilter();
         }
 
         /// <summary>
-        /// Open new custom filte Form. Called, when custom filter button clicked.
+        /// Open new custom filter Form. Called, when custom filter button clicked.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -59,11 +74,10 @@ namespace Laptop_Database
         /// </summary>
         public void ApplyFilter()
         {
+            var source = new BindingSource();
+            listBinding = new BindingList<Laptop>(laptopList);
             if (currentFilter != null && laptopList != null)
             {
-                var source = new BindingSource();
-                listBinding = new BindingList<Laptop>(laptopList);
-
                 if (currentFilter.ram != null)
                     listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.ram.size <= currentFilter.ram).ToList());
 
@@ -91,11 +105,50 @@ namespace Laptop_Database
                 if (currentFilter.cpu != null)
                     listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.cpu.type.Equals(currentFilter.cpu)).ToList());
 
-                //inconsistent, not implemented
-                //listBinding = new BindingList<Laptop>(listBinding);
+                if (currentFilter.inconsistent)
+                {
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.consistency).ToList());
+                }
+                else
+                {
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => !laptop.consistency).ToList());
+                }
+            }
+            source.DataSource = listBinding;
+            dataGridView_Search.DataSource = source;
+        }
 
-                source.DataSource = listBinding;
-                dataGridView_Search.DataSource = source;
+        public void RefreshFilterList()
+        {
+            topFilterList = connector.getTopPattern(10);
+            if (currentFilter == null)
+            {
+                topSearch.Clear();
+                topSearch.AddItem("no filter");
+                foreach (string filter in topFilterList)
+                    topSearch.AddItem(filter);
+                topSearch.selectedIndex = 0;
+            }
+            else
+            {
+                int indexSearch = topFilterList.IndexOf(currentFilter.ToString());
+                if (indexSearch == -1)
+                {
+                    topSearch.Clear();
+                    topSearch.AddItem(currentFilter.ToString());
+                    topSearch.AddItem("no filter");
+                    foreach (string filter in topFilterList)
+                        topSearch.AddItem(filter);
+                    topSearch.selectedIndex = 0;
+                }
+                else
+                {
+                    topSearch.Clear();
+                    topSearch.AddItem("no filter");
+                    foreach (string filter in topFilterList)
+                        topSearch.AddItem(filter);
+                    topSearch.selectedIndex = indexSearch + 1;
+                }
             }
         }
 
@@ -109,6 +162,7 @@ namespace Laptop_Database
         /// <param name="filePath"></param>
         void FileLoaded(string filePath)
         {
+            this.filePath = filePath;
             backgroundWorker.RunWorkerAsync(filePath);
         }
 
@@ -120,20 +174,24 @@ namespace Laptop_Database
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             String filePath = (String)e.Argument;
-            String extension = filePath.Substring(filePath.LastIndexOf("."), filePath.Length - filePath.LastIndexOf("."));
-            switch (extension)
+            String md5 = DataParser.MD5.checkMD5(filePath);
+            if (!connector.wasImported(md5))
             {
-                case ".xml":
-                    laptopList = DataParser.XML.Parse(filePath);
-                    break;
-                case ".json":
-                    laptopList = DataParser.JSON.Parse(filePath);
-                    break;
-                case ".csv":
-                    laptopList = DataParser.CSV.Parse(filePath);
-                    break;
-                default:
-                    break;
+                String extension = filePath.Substring(filePath.LastIndexOf("."), filePath.Length - filePath.LastIndexOf("."));
+                switch (extension)
+                {
+                    case ".xml":
+                        laptopList = DataParser.XML.Parse(filePath);
+                        break;
+                    case ".json":
+                        laptopList = DataParser.JSON.Parse(filePath);
+                        break;
+                    case ".csv":
+                        laptopList = DataParser.CSV.Parse(filePath);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -144,13 +202,23 @@ namespace Laptop_Database
         /// <param name="e"></param>
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            String md5 = DataParser.MD5.checkMD5(filePath);
+            connector.insert(laptopList, md5);
+            BindData();
+
+            //ShowNumberOfAddedRows(numberOfNewRows);
+        }
+
+        private void BindData()
+        {
+            laptopList = connector.get();
+
             listBinding = new BindingList<Laptop>(laptopList);
             var source = new BindingSource()
             {
                 DataSource = listBinding
             };
             dataGridView_Search.DataSource = source;
-            //ShowNumberOfAddedRows(numberOfNewRows);
         }
 
         #endregion Import tab (Drag&Drop, OpenFileDialog)
@@ -277,9 +345,10 @@ namespace Laptop_Database
                 Laptop laptop = dgvr.DataBoundItem as Laptop;
                 if (laptop != null)
                 {
-                    if (laptop.consistency) { 
-                        dgvr.DefaultCellStyle.BackColor = inconsistentRow;
-                        for (int i = 0; i < 19; i++ )
+                    if (laptop.consistency)
+                    {
+                        dgvr.DefaultCellStyle.BackColor = Color.Aquamarine; //provizorní pro lepší čitelnost
+                        for (int i = 0; i < 18; i++)
                         {
                             if (laptop.consistencies[i])
                                 dgvr.Cells[i].Style.BackColor = inconsistentCell;

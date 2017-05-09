@@ -8,7 +8,7 @@ using Laptop_Database.Hardware;
 
 namespace Laptop_Database.Database
 {
-    class MSSQLConnector : IDBConnector
+    public class MSSQLConnector : IDBConnector
     {
         private List<string> messages = new List<string>();
         private bool multiple = false;
