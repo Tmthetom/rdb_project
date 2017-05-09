@@ -19,7 +19,7 @@ namespace Laptop_Database
         #region Initialization (Components load)
 
         public DatabaseFilter currentFilter = null;
-        public List<DatabaseFilter> filterList = new List<DatabaseFilter>();
+        public List<string> topFilterList = new List<string>();
         public List<Laptop> laptopList = new List<Laptop>();
         private BindingList<Laptop> listBinding;
         private String filePath;
@@ -31,6 +31,7 @@ namespace Laptop_Database
             dataGridView_Search.AutoGenerateColumns = false;
 
             connector.createConnection();
+            RefreshFilterList();
             BindData();
         }
 
@@ -45,11 +46,20 @@ namespace Laptop_Database
         /// <param name="e"></param>
         private void TopSearch_onItemSelected(object sender, EventArgs e)
         {
+            if (!topSearch.selectedValue.Equals("no filter"))
+            {
+                currentFilter = new DatabaseFilter(topSearch.selectedValue);
+                connector.insertPattern(currentFilter.ToString());
+            }
+            else
+            {
+                   currentFilter = null;
+            }
             ApplyFilter();
         }
 
         /// <summary>
-        /// Open new custom filte Form. Called, when custom filter button clicked.
+        /// Open new custom filter Form. Called, when custom filter button clicked.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -64,11 +74,10 @@ namespace Laptop_Database
         /// </summary>
         public void ApplyFilter()
         {
+            var source = new BindingSource();
+            listBinding = new BindingList<Laptop>(laptopList);
             if (currentFilter != null && laptopList != null)
             {
-                var source = new BindingSource();
-                listBinding = new BindingList<Laptop>(laptopList);
-
                 if (currentFilter.ram != null)
                     listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.ram.size <= currentFilter.ram).ToList());
 
@@ -96,15 +105,50 @@ namespace Laptop_Database
                 if (currentFilter.cpu != null)
                     listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.cpu.type.Equals(currentFilter.cpu)).ToList());
 
-                if (currentFilter.inconsistent) {
+                if (currentFilter.inconsistent)
+                {
                     listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.consistency).ToList());
                 }
-                else {
+                else
+                {
                     listBinding = new BindingList<Laptop>(listBinding.Where(laptop => !laptop.consistency).ToList());
                 }
+            }
+            source.DataSource = listBinding;
+            dataGridView_Search.DataSource = source;
+        }
 
-                source.DataSource = listBinding;
-                dataGridView_Search.DataSource = source;
+        public void RefreshFilterList()
+        {
+            topFilterList = connector.getTopPattern(10);
+            if (currentFilter == null)
+            {
+                topSearch.Clear();
+                topSearch.AddItem("no filter");
+                foreach (string filter in topFilterList)
+                    topSearch.AddItem(filter);
+                topSearch.selectedIndex = 0;
+            }
+            else
+            {
+                int indexSearch = topFilterList.IndexOf(currentFilter.ToString());
+                if (indexSearch == -1)
+                {
+                    topSearch.Clear();
+                    topSearch.AddItem(currentFilter.ToString());
+                    topSearch.AddItem("no filter");
+                    foreach (string filter in topFilterList)
+                        topSearch.AddItem(filter);
+                    topSearch.selectedIndex = 0;
+                }
+                else
+                {
+                    topSearch.Clear();
+                    topSearch.AddItem("no filter");
+                    foreach (string filter in topFilterList)
+                        topSearch.AddItem(filter);
+                    topSearch.selectedIndex = indexSearch + 1;
+                }
             }
         }
 

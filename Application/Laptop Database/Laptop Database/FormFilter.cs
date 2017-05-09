@@ -228,7 +228,8 @@ namespace Laptop_Database
                 cpu, inconsistent);
 
             formMain.currentFilter = df;
-            formMain.filterList.Add(df);
+            formMain.connector.insertPattern(df.ToString());
+            formMain.RefreshFilterList();
             formMain.ApplyFilter();
             this.Hide();
         }
