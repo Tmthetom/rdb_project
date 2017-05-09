@@ -13,6 +13,16 @@ namespace Laptop_Database
 
         private FormMain formMain;
 
+        int maxRam;
+        int maxWeight;
+        int maxWidth;
+        int maxHeight;
+        int maxDepth;
+        int maxResolutionWidth;
+        int maxResolutionHeight;
+        List<string> cpus = new List<string>();
+
+
         public FormFilter(FormMain formMain)
         {
             this.formMain = formMain;
@@ -26,65 +36,141 @@ namespace Laptop_Database
         private void InitializeValues()
         {
             // Load values for filters
+            Dictionary<string, int> dict = formMain.connector.getMaxValues();
 
-            /* START OF: THIS PART MUST BE REPLACED WITH REAL VALUES */
-            int maxRam = 64;
-            int maxWeight = 5;
-            int maxWidth = 500;
-            int maxHeight = 60;
-            int maxDepth = 400;
-            int maxResolutionWidth = 4096;
-            int maxResolutionHeight = 2160;
-            /* END OF: THIS PART MUST BE REPLACED WITH REAL VALUES */
+            maxRam = dict["ram_size"];
+            maxWeight = dict["weight"];
+            maxWidth = dict["width"];
+            maxHeight = dict["height"];
+            maxDepth = dict["depth"];
+            maxResolutionWidth = dict["display_width"];
+            maxResolutionHeight = dict["display_height"];
 
-            List<string> cpus = formMain.laptopList.Select(laptop => laptop.cpu.type).Distinct().ToList();
+            cpus = formMain.connector.getDistinctValues()["cpu_type"];
 
             // RAM
             filterRam.MaximumValue = maxRam;
-            filterRam.Value = filterRam.MaximumValue;
-            labelRamTo.Text = filterRam.Value.ToString() + " " + ramUnit;
 
             // Weight
             filterWeight.MaximumRange = maxWeight;
+
+            // Width
+            filterWidth.MaximumValue = maxWidth;
+
+            // Height
+            filterHeight.MaximumValue = maxHeight;
+
+            // Depth
+            filterDepth.MaximumValue = maxDepth;
+
+            // Resolution width
+            filterResolutionWidth.MaximumValue = maxResolutionWidth;
+
+            // Resolution height
+            filterResolutionHeight.MaximumValue = maxResolutionHeight;
+
+            // CPU
+            foreach (String cpu in cpus)
+                filterComboBoxCpu.Items.Add(cpu);
+
+            if (formMain.currentFilter == null) {
+                ResetFilter();
+            }
+            else {
+                LoadFilter();
+            }
+        }
+
+        private void ResetFilter() {
+            // RAM
+            filterRam.Value = filterRam.MaximumValue;
+
+            // Weight
             filterWeight.RangeMax = filterWeight.MaximumRange;
             filterWeight.RangeMin = 0;
+
+            // Width
+            filterWidth.Value = filterWidth.MaximumValue;
+
+            // Height
+            filterHeight.Value = filterHeight.MaximumValue;
+
+            // Depth
+            filterDepth.Value = filterDepth.MaximumValue;
+
+            // Resolution width
+            filterResolutionWidth.Value = filterResolutionWidth.MaximumValue;
+
+            // Resolution height
+            filterResolutionHeight.Value = filterResolutionHeight.MaximumValue;
+
+            // CPU
+            filterComboBoxCpu.SelectedIndex = 0;
+
+            // Inconsistent
+            filterCheckBox.Checked = false;
+
+            LoadText();
+        }
+
+        private void LoadFilter()
+        {
+            DatabaseFilter filter = formMain.currentFilter;
+
+            // RAM
+            filterRam.Value = (filter.ram.HasValue) ? (int)filter.ram : filterRam.MaximumValue;
+
+            // Weight
+            filterWeight.RangeMin = (filter.weightLower.HasValue) ? (int)filter.weightLower : 0;
+            filterWeight.RangeMax = (filter.weightUpper.HasValue) ? (int)filter.weightUpper : filterWeight.MaximumRange;
+
+            // Width
+            filterWidth.Value = (filter.width.HasValue) ? (int)filter.width : filterWidth.MaximumValue;
+
+            // Height
+            filterHeight.Value = (filter.height.HasValue) ? (int)filter.height : filterHeight.MaximumValue;
+
+            // Depth
+            filterDepth.Value = (filter.depth.HasValue) ? (int)filter.depth : filterDepth.MaximumValue;
+
+            // Resolution width
+            filterResolutionWidth.Value = (filter.resolutionWidth.HasValue) ? (int)filter.resolutionWidth : filterResolutionWidth.MaximumValue;
+
+            // Resolution height
+            filterResolutionHeight.Value = (filter.resolutionHeight.HasValue) ? (int)filter.resolutionHeight : filterResolutionHeight.MaximumValue;
+
+            // CPU
+            filterComboBoxCpu.SelectedIndex = (!String.IsNullOrEmpty(filter.cpu)) ? cpus.IndexOf(filter.cpu) : 0;
+
+            // Inconsistent
+            filterCheckBox.Checked = filter.inconsistent;
+
+            LoadText();
+        }
+
+        private void LoadText()
+        {
+            // RAM
+            labelRamTo.Text = filterRam.Value.ToString() + " " + ramUnit;
+
+            // Weight
             labelWeightFrom.Text = filterWeight.RangeMin.ToString() + " " + weightUnit;
             labelWeightTo.Text = filterWeight.RangeMax.ToString() + " " + weightUnit;
 
             // Width
-            filterWidth.MaximumValue = maxWidth;
-            filterWidth.Value = filterWidth.MaximumValue;
             labelWidthTo.Text = filterWidth.Value.ToString() + " " + sizeUnit;
 
             // Height
-            filterHeight.MaximumValue = maxHeight;
-            filterHeight.Value = filterHeight.MaximumValue;
             labelHeightTo.Text = filterHeight.Value.ToString() + " " + sizeUnit;
 
             // Depth
-            filterDepth.MaximumValue = maxDepth;
-            filterDepth.Value = filterDepth.MaximumValue;
             labelDepthTo.Text = filterDepth.Value.ToString() + " " + sizeUnit;
 
             // Resolution width
-            filterResolutionWidth.MaximumValue = maxResolutionWidth;
-            filterResolutionWidth.Value = filterResolutionWidth.MaximumValue;
             labelResolutionWidthTo.Text = filterResolutionWidth.Value.ToString() + " " + resolutionUnit;
 
             // Resolution height
-            filterResolutionHeight.MaximumValue = maxResolutionHeight;
-            filterResolutionHeight.Value = filterResolutionHeight.MaximumValue;
             labelResolutionHeightTo.Text = filterResolutionHeight.Value.ToString() + " " + resolutionUnit;
-
-            // CPU
-            filterComboBoxCpu.SelectedIndex = 0;
-            foreach (String cpu in cpus)
-            {
-                filterComboBoxCpu.Items.Add(cpu);
-            }
-
-            // Inconsistent
-            filterCheckBox.Checked = false;
         }
 
         #endregion Initialization
@@ -210,7 +296,7 @@ namespace Laptop_Database
         /// <param name="e"></param>
         private void ResetButton_Click(object sender, EventArgs e)
         {
-            InitializeValues();
+            ResetFilter();
         }
 
         #endregion Autocalled functions (Dont need to change)
