@@ -331,8 +331,8 @@ namespace Laptop_Database
 
         #region Inconsistency (Coloring)
 
-        private Color inconsistentRow = Color.FromArgb(245, 245, 245);
-        private Color inconsistentCell = Color.FromArgb(220, 220, 220);
+        private Color inconsistentRow = Color.FromArgb(230, 230, 230);
+        private Color inconsistentCell = Color.FromArgb(210, 210, 210);
 
         /// <summary>
         /// When data binding complete
@@ -349,11 +349,11 @@ namespace Laptop_Database
                 {
                     if (laptop.consistency)
                     {
-                        dgvr.DefaultCellStyle.BackColor = Color.Aquamarine; //provizorní pro lepší čitelnost
+                        dgvr.DefaultCellStyle.BackColor = inconsistentRow;
                         for (int i = 0; i < 18; i++)
                         {
                             if (laptop.consistencies[i])
-                                dgvr.Cells[i].Style.BackColor = inconsistentCell;
+                                dgvr.Cells[i+1].Style.BackColor = inconsistentCell;
                         }
                     }
                 }
