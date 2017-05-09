@@ -66,20 +66,19 @@ namespace Laptop_Database.Database
                 OS temp_os;
                 RAM temp_ram;
 
-                SqlCommand comm = new SqlCommand("SELECT producer_code, color, "+
-                                                        "width, height,depth, weight, "+
-                                                        "display_diagonal, display_width, "+
-                                                        "display_height, display_label, "+
-                                                        "cpu_type, cpu_cores, ram_type, "+
-                                                        "ram_frequency, ram_size, hdd_type, "+
-                                                        "hdd_size, os_label, gpu_type, color_consistency, "+
-                                                        "width_consistency, height_consistency, depth_consistency, "+
-                                                        "weight_consistency, display_diagonal_consistency, "+
-                                                        "display_width_consistency, display_height_consistency, "+
-                                                        "display_label_consistency, cpu_type_consistency, "+
-                                                        "cpu_cores_consistency, ram_type_consistency, ram_frequency_consistency, "+
-                                                        "ram_size_consistency, hdd_type_consistency, hdd_size_consistency, "+
-                                                        "os_label_consistency, gpu_type_consistency "+
+                SqlCommand comm = new SqlCommand("SELECT producer_code, color, " +
+                                                        "width, height,depth, weight, " +
+                                                        "display_diagonal, display_width, " +
+                                                        "display_height, display_label, " +
+                                                        "cpu_type, cpu_cores, ram_type, " +
+                                                        "ram_frequency, ram_size, hdd_type, " +
+                                                        "hdd_size, os_label, gpu_type, " +
+                                                        "display_diagonal_consistency, display_width_consistency, display_height_consistency, display_label_consistency, " +
+                                                        "os_label_consistency, gpu_type_consistency, " +
+                                                        "cpu_type_consistency, cpu_cores_consistency, " +
+                                                        "ram_type_consistency, ram_frequency_consistency, ram_size_consistency, " +
+                                                        "hdd_type_consistency, hdd_size_consistency, " +
+                                                        "color_consistency, height_consistency, width_consistency, depth_consistency, weight_consistency " +
                                                  "FROM v_notebooks", this.connection);
                 reader = comm.ExecuteReader();
                 while(reader.Read())
@@ -129,14 +128,13 @@ namespace Laptop_Database.Database
                                                         "display_height, display_label, " +
                                                         "cpu_type, cpu_cores, ram_type, " +
                                                         "ram_frequency, ram_size, hdd_type, " +
-                                                        "hdd_size, os_label, gpu_type, color_consistency, " +
-                                                        "width_consistency, height_consistency, depth_consistency, " +
-                                                        "weight_consistency, display_diagonal_consistency, " +
-                                                        "display_width_consistency, display_height_consistency, " +
-                                                        "display_label_consistency, cpu_type_consistency, " +
-                                                        "cpu_cores_consistency, ram_type_consistency, ram_frequency_consistency, " +
-                                                        "ram_size_consistency, hdd_type_consistency, hdd_size_consistency, " +
-                                                        "os_label_consistency, gpu_type_consistency " +
+                                                        "hdd_size, os_label, gpu_type, " +
+                                                        "display_diagonal_consistency, display_width_consistency, display_height_consistency, display_label_consistency, " +
+                                                        "os_label_consistency, gpu_type_consistency, " +
+                                                        "cpu_type_consistency, cpu_cores_consistency, " +
+                                                        "ram_type_consistency, ram_frequency_consistency, ram_size_consistency, " +
+                                                        "hdd_type_consistency, hdd_size_consistency, " +
+                                                        "color_consistency, height_consistency, width_consistency, depth_consistency, weight_consistency " +
                                                  "FROM v_notebooks WHERE " + condition, this.connection);
                 reader = comm.ExecuteReader();
                 while (reader.Read())
@@ -159,10 +157,7 @@ namespace Laptop_Database.Database
                     temp_laptop.consistencies = consistencies;
                     laptops.Add(temp_laptop);
                 }
-
-                SqlCommand comm2 = new SqlCommand("INSERT INTO top_search(pattern) VALUES(@pattern)", connection);
-                comm2.Parameters.AddWithValue("@pattern", condition);
-                comm2.ExecuteNonQuery();
+                reader.Close();
             }
             reader.Close();
             return laptops;
