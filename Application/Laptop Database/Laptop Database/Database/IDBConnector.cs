@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Laptop_Database.Database
 {
-    abstract class IDBConnector
+    public abstract class IDBConnector
     {
         protected string server = "RONIKPC", database = "rdb_project";
         protected SqlConnection connection;

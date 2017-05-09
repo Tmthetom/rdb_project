@@ -17,7 +17,7 @@ namespace Laptop_Database.DataParser
             {
                 using (var stream = File.OpenRead(filename))
                 {
-                    return Encoding.Default.GetString(md5.ComputeHash(stream));
+                    return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "‌​").ToLower();
                 }
             }
         }

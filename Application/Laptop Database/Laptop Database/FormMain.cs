@@ -23,13 +23,15 @@ namespace Laptop_Database
         public List<Laptop> laptopList = new List<Laptop>();
         private BindingList<Laptop> listBinding;
         private String filePath;
+        public Database.MSSQLConnector connector = new MSSQLConnector();
 
         public FormMain()
         {
             InitializeComponent();
-            Database.MSSQLConnector connector = new MSSQLConnector();
-            connector.createConnection();
             dataGridView_Search.AutoGenerateColumns = false;
+
+            connector.createConnection();
+            BindData();
         }
 
         #endregion Initialization (Components load)
@@ -94,8 +96,12 @@ namespace Laptop_Database
                 if (currentFilter.cpu != null)
                     listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.cpu.type.Equals(currentFilter.cpu)).ToList());
 
-                //inconsistent, not implemented
-                //listBinding = new BindingList<Laptop>(listBinding);
+                if (currentFilter.inconsistent) {
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => laptop.consistency).ToList());
+                }
+                else {
+                    listBinding = new BindingList<Laptop>(listBinding.Where(laptop => !laptop.consistency).ToList());
+                }
 
                 source.DataSource = listBinding;
                 dataGridView_Search.DataSource = source;
@@ -124,20 +130,24 @@ namespace Laptop_Database
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             String filePath = (String)e.Argument;
-            String extension = filePath.Substring(filePath.LastIndexOf("."), filePath.Length - filePath.LastIndexOf("."));
-            switch (extension)
+            String md5 = DataParser.MD5.checkMD5(filePath);
+            if (!connector.wasImported(md5))
             {
-                case ".xml":
-                    laptopList = DataParser.XML.Parse(filePath);
-                    break;
-                case ".json":
-                    laptopList = DataParser.JSON.Parse(filePath);
-                    break;
-                case ".csv":
-                    laptopList = DataParser.CSV.Parse(filePath);
-                    break;
-                default:
-                    break;
+                String extension = filePath.Substring(filePath.LastIndexOf("."), filePath.Length - filePath.LastIndexOf("."));
+                switch (extension)
+                {
+                    case ".xml":
+                        laptopList = DataParser.XML.Parse(filePath);
+                        break;
+                    case ".json":
+                        laptopList = DataParser.JSON.Parse(filePath);
+                        break;
+                    case ".csv":
+                        laptopList = DataParser.CSV.Parse(filePath);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -149,13 +159,22 @@ namespace Laptop_Database
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             String md5 = DataParser.MD5.checkMD5(filePath);
+            connector.insert(laptopList, md5);
+            BindData();
+
+            //ShowNumberOfAddedRows(numberOfNewRows);
+        }
+
+        private void BindData()
+        {
+            laptopList = connector.get();
+
             listBinding = new BindingList<Laptop>(laptopList);
             var source = new BindingSource()
             {
                 DataSource = listBinding
             };
             dataGridView_Search.DataSource = source;
-            //ShowNumberOfAddedRows(numberOfNewRows);
         }
 
         #endregion Import tab (Drag&Drop, OpenFileDialog)
@@ -282,9 +301,10 @@ namespace Laptop_Database
                 Laptop laptop = dgvr.DataBoundItem as Laptop;
                 if (laptop != null)
                 {
-                    if (laptop.consistency) { 
-                        dgvr.DefaultCellStyle.BackColor = inconsistentRow;
-                        for (int i = 0; i < 19; i++ )
+                    if (laptop.consistency)
+                    {
+                        dgvr.DefaultCellStyle.BackColor = Color.Aquamarine; //provizorní pro lepší čitelnost
+                        for (int i = 0; i < 18; i++)
                         {
                             if (laptop.consistencies[i])
                                 dgvr.Cells[i].Style.BackColor = inconsistentCell;
