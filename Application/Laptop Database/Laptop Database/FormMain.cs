@@ -447,22 +447,44 @@ namespace Laptop_Database
         }
 
         /// <summary>
-        /// Show number of added rows in Add tab, after data insert.
+        /// Show number of added rows and inconsistencies in Add tab, after data insert.
         /// </summary>
         /// <param name="rows">Number of new added rows</param>
-        private void ShowNumberOfAddedRows(int rows)
+        /// <param name="inconsistencies">Number of inconsistent in new added rows</param>
+        private void ShowNumberOfAddedRows(int rows, int inconsistencies)
         {
-            if (rows >= 2)  // For two and more rows
+            // If inconsistent
+            if (inconsistencies <= 0)
             {
-                label_NumberOfAdded.Text = "Added " + rows + " new rows.";
+                if (rows >= 2)  // For two and more rows
+                {
+                    label_NumberOfAdded.Text = "Added " + rows + " new rows with " + inconsistencies + " inconsistencies.";
+                }
+                else if (rows == 1)  // For one row
+                {
+                    label_NumberOfAdded.Text = "Added " + rows + " new rows with " + inconsistencies + " inconsistency.";
+                }
+                else  // For zero rows
+                {
+                    label_NumberOfAdded.Text = "No rows added (rows are same, or there are no rows).";
+                }
             }
-            else if (rows == 1)  // For one row
+
+            // Int not inconstent
+            else
             {
-                label_NumberOfAdded.Text = "Added " + rows + " new row.";
-            }
-            else  // For zero rows
-            {
-                label_NumberOfAdded.Text = "No rows added (rows are same, or there are no rows).";
+                if (rows >= 2)  // For two and more rows
+                {
+                    label_NumberOfAdded.Text = "Added " + rows + " new rows with no inconsistency.";
+                }
+                else if (rows == 1)  // For one row
+                {
+                    label_NumberOfAdded.Text = "Added " + rows + " new row with no inconsistency.";
+                }
+                else  // For zero rows
+                {
+                    label_NumberOfAdded.Text = "No rows added (rows are same, or there are no rows).";
+                }
             }
         }
 
