@@ -53,8 +53,8 @@ namespace Laptop_Database.Database
                     this.width = (fields[3] == "") ? (int?)null : Convert.ToInt32(fields[3]);
                     this.height = (fields[4] == "") ? (int?)null : Convert.ToInt32(fields[4]);
                     this.depth = (fields[5] == "") ? (int?)null : Convert.ToInt32(fields[5]);
-                    this.resolutionWidth = (fields[6] == "") ? (int?)null : Convert.ToInt32(fields[7]);
-                    this.resolutionHeight = (fields[7] == "") ? (int?)null : Convert.ToInt32(fields[6]);
+                    this.resolutionWidth = (fields[6] == "") ? (int?)null : Convert.ToInt32(fields[6]);
+                    this.resolutionHeight = (fields[7] == "") ? (int?)null : Convert.ToInt32(fields[7]);
                     this.cpu = (fields[8] == "") ? null : fields[8]; 
                     this.inconsistent = bool.Parse(fields[9]);
                 }
