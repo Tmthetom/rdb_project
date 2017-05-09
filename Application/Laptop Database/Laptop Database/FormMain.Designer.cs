@@ -64,6 +64,7 @@
             this.screen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resolution_width = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resolution_height = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.display_label = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.os = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gpu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cpu = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,7 +79,6 @@
             this.width = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Depth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.inconsistent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel_Menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_About)).BeginInit();
@@ -196,6 +196,7 @@
             this.screen,
             this.resolution_width,
             this.resolution_height,
+            this.display_label,
             this.os,
             this.gpu,
             this.cpu,
@@ -209,8 +210,7 @@
             this.height,
             this.width,
             this.Depth,
-            this.weight,
-            this.inconsistent});
+            this.weight});
             this.dataGridView_Search.Location = new System.Drawing.Point(0, 76);
             this.dataGridView_Search.Name = "dataGridView_Search";
             this.dataGridView_Search.ReadOnly = true;
@@ -526,6 +526,14 @@
             this.resolution_height.ReadOnly = true;
             this.resolution_height.Width = 106;
             // 
+            // display_label
+            // 
+            this.display_label.DataPropertyName = "display.label";
+            this.display_label.HeaderText = "Display Label";
+            this.display_label.Name = "display_label";
+            this.display_label.ReadOnly = true;
+            this.display_label.Width = 87;
+            // 
             // os
             // 
             this.os.DataPropertyName = "os.label";
@@ -638,14 +646,6 @@
             this.weight.ReadOnly = true;
             this.weight.Width = 66;
             // 
-            // inconsistent
-            // 
-            this.inconsistent.DataPropertyName = "consistency";
-            this.inconsistent.HeaderText = "Inconsistent";
-            this.inconsistent.Name = "inconsistent";
-            this.inconsistent.ReadOnly = true;
-            this.inconsistent.Width = 89;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -722,6 +722,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn screen;
         private System.Windows.Forms.DataGridViewTextBoxColumn resolution_width;
         private System.Windows.Forms.DataGridViewTextBoxColumn resolution_height;
+        private System.Windows.Forms.DataGridViewTextBoxColumn display_label;
         private System.Windows.Forms.DataGridViewTextBoxColumn os;
         private System.Windows.Forms.DataGridViewTextBoxColumn gpu;
         private System.Windows.Forms.DataGridViewTextBoxColumn cpu;
@@ -736,7 +737,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn width;
         private System.Windows.Forms.DataGridViewTextBoxColumn Depth;
         private System.Windows.Forms.DataGridViewTextBoxColumn weight;
-        private System.Windows.Forms.DataGridViewTextBoxColumn inconsistent;
     }
 }
 
