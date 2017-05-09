@@ -203,9 +203,11 @@ namespace Laptop_Database
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             String md5 = DataParser.MD5.checkMD5(filePath);
-            connector.insert(laptopList, md5);
-            BindData();
-
+            if (!connector.wasImported(md5))
+            {
+                connector.insert(laptopList, md5);
+                BindData();
+            }
             //ShowNumberOfAddedRows(numberOfNewRows);
         }
 
