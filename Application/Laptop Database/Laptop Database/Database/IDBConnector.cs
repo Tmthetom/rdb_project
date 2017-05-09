@@ -32,6 +32,7 @@ namespace Laptop_Database.Database
         public abstract Dictionary<string, int> getMaxValues();
         public abstract Dictionary<string, List<string>> getDistinctValues();
         public abstract void insertPattern(string pattern);
+        public abstract bool wasImported(string hash);
 
         public abstract List<string> getTopPattern(int numberOfPatterns);
         public static IDBConnector factory(string name)

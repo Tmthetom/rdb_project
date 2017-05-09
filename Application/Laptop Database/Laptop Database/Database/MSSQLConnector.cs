@@ -302,5 +302,16 @@ namespace Laptop_Database.Database
             }
             return values;
         }
+
+        public override bool wasImported(string hash)
+        {
+            SqlCommand comm = new SqlCommand("SELECT count(hash) FROM imported_files WHERE hash = @hash", connection);
+            comm.Parameters.AddWithValue("@hash", hash);
+            SqlDataReader reader = comm.ExecuteReader();
+            reader.Read();
+            bool result = Int32.Parse("" + reader[0]) > 0;
+            reader.Close();
+            return result;
+        }
     }
 }
