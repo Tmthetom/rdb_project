@@ -10,7 +10,7 @@ namespace Laptop_Database.Database
 {
     public class MSSQLConnector : IDBConnector
     {
-        private List<string> messages = new List<string>();
+        private List<bool> messages = new List<bool>();
         private bool multiple = false;
         public override void createConnection()
         {
@@ -163,7 +163,7 @@ namespace Laptop_Database.Database
             return laptops;
         }
 
-        public override List<string> insert(List<Laptop> laptops, string hash)
+        public override List<bool> insert(List<Laptop> laptops, string hash)
         {
             messages.Clear();
             multiple = true;
@@ -175,7 +175,7 @@ namespace Laptop_Database.Database
             return messages;
         }
 
-        public override List<string> insert(Laptop laptop, string hash)
+        public override List<bool> insert(Laptop laptop, string hash)
         {
             if (!multiple)
             {
@@ -241,7 +241,9 @@ namespace Laptop_Database.Database
 
         void Connection_InfoMessage(object sender, SqlInfoMessageEventArgs e)
         {
-            messages.Add(e.Message);
+            Regex regex = new Regex("(.*?):(.*?)$");
+            Match match = regex.Match(e.Message);
+            messages.Add(Int32.Parse(match.Groups[2].Value) > 0);
         }
 
         public override Dictionary<string, int> getMaxValues()
