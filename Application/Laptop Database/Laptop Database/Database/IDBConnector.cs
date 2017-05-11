@@ -9,7 +9,7 @@ namespace Laptop_Database.Database
 {
     public abstract class IDBConnector
     {
-        protected string server = "", database = "";
+        protected string server = "RONIKPC", database = "rdb_project";
         protected SqlConnection connection;
         
         protected bool success = false;

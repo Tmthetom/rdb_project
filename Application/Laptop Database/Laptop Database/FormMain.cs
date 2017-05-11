@@ -205,10 +205,10 @@ namespace Laptop_Database
             String md5 = DataParser.MD5.checkMD5(filePath);
             if (!connector.wasImported(md5))
             {
-                connector.insert(laptopList, md5);
+                List<bool> added = connector.insert(laptopList, md5);
                 BindData();
+                ShowNumberOfAddedRows(added.Count, added.Where(c => c).Count());
             }
-            //ShowNumberOfAddedRows(numberOfNewRows);
         }
 
         private void BindData()
@@ -454,7 +454,7 @@ namespace Laptop_Database
         private void ShowNumberOfAddedRows(int rows, int inconsistencies)
         {
             // If inconsistent
-            if (inconsistencies <= 0)
+            if (inconsistencies > 0)
             {
                 if (rows >= 2)  // For two and more rows
                 {
