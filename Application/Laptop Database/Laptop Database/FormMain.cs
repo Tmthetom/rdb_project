@@ -454,7 +454,7 @@ namespace Laptop_Database
         private void ShowNumberOfAddedRows(int rows, int inconsistencies)
         {
             // If inconsistent
-            if (inconsistencies <= 0)
+            if (inconsistencies > 0)
             {
                 if (rows >= 2)  // For two and more rows
                 {
