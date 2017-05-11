@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Laptop_Database.Hardware;
+using System.Text.RegularExpressions;
 
 namespace Laptop_Database.Database
 {

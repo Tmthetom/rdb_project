@@ -205,10 +205,10 @@ namespace Laptop_Database
             String md5 = DataParser.MD5.checkMD5(filePath);
             if (!connector.wasImported(md5))
             {
-                connector.insert(laptopList, md5);
+                List<bool> added = connector.insert(laptopList, md5);
                 BindData();
+                ShowNumberOfAddedRows(added.Count, added.Where(c => c).Count());
             }
-            //ShowNumberOfAddedRows(numberOfNewRows);
         }
 
         private void BindData()
