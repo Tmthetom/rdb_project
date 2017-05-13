@@ -331,8 +331,8 @@ namespace Laptop_Database
 
         #region Inconsistency (Coloring)
 
-        private Color inconsistentRow = Color.FromArgb(230, 230, 230);
-        private Color inconsistentCell = Color.FromArgb(210, 210, 210);
+        private Color inconsistentRow = Color.FromArgb(240, 240, 240);
+        private Color inconsistentCell = Color.FromArgb(255, 172, 172);
 
         /// <summary>
         /// When data binding complete
