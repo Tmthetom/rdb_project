@@ -209,6 +209,10 @@ namespace Laptop_Database
                 BindData();
                 ShowNumberOfAddedRows(added.Count, added.Where(c => c).Count());
             }
+            else
+            {
+                ShowNumberOfAddedRows(0, 0);
+            }
         }
 
         private void BindData()
@@ -394,7 +398,7 @@ namespace Laptop_Database
 
         #endregion Search tab (Coloring, Formating)
 
-        #region Add (Drag&Drop, AddedRows)
+        #region Import Tab (Drag&Drop, AddedRows)
 
         private Color leaveColor = Color.Transparent;
         private Color dragColor = Color.SkyBlue;
@@ -492,7 +496,7 @@ namespace Laptop_Database
             }
         }
 
-        #endregion Add (Drag&Drop, AddedRows)
+        #endregion Import Tab (Drag&Drop, AddedRows)
 
         #region Notifications (Balloon)
 
