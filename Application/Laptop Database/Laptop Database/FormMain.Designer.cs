@@ -79,6 +79,7 @@
             this.label_DatabaseCreator = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.labelRowsCount = new System.Windows.Forms.Label();
             this.panel_Menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_About)).BeginInit();
@@ -376,6 +377,7 @@
             this.panel_Search_Top.BackColor = System.Drawing.SystemColors.Control;
             this.panel_Search_Top.BackgroundImage = global::Laptop_Database.Properties.Resources.CodeTranslation;
             this.panel_Search_Top.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel_Search_Top.Controls.Add(this.labelRowsCount);
             this.panel_Search_Top.Controls.Add(this.topSearch);
             this.panel_Search_Top.Controls.Add(this.customFilter);
             this.panel_Search_Top.Location = new System.Drawing.Point(0, 2);
@@ -390,12 +392,12 @@
             this.topSearch.ForeColor = System.Drawing.Color.White;
             this.topSearch.Items = new string[] {
         "no filter"};
-            this.topSearch.Location = new System.Drawing.Point(16, 12);
+            this.topSearch.Location = new System.Drawing.Point(154, 12);
             this.topSearch.Name = "topSearch";
             this.topSearch.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.topSearch.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.topSearch.selectedIndex = 0;
-            this.topSearch.Size = new System.Drawing.Size(453, 48);
+            this.topSearch.Size = new System.Drawing.Size(315, 48);
             this.topSearch.TabIndex = 1;
             this.topSearch.onItemSelected += new System.EventHandler(this.TopSearch_onItemSelected);
             // 
@@ -646,6 +648,18 @@
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker_DoWork);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker_RunWorkerCompleted);
             // 
+            // labelRowsCount
+            // 
+            this.labelRowsCount.AutoSize = true;
+            this.labelRowsCount.BackColor = System.Drawing.Color.Transparent;
+            this.labelRowsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 30.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelRowsCount.ForeColor = System.Drawing.Color.White;
+            this.labelRowsCount.Location = new System.Drawing.Point(8, 13);
+            this.labelRowsCount.Name = "labelRowsCount";
+            this.labelRowsCount.Size = new System.Drawing.Size(43, 47);
+            this.labelRowsCount.TabIndex = 2;
+            this.labelRowsCount.Text = "0";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -668,6 +682,7 @@
             this.tabPage_Search.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Search)).EndInit();
             this.panel_Search_Top.ResumeLayout(false);
+            this.panel_Search_Top.PerformLayout();
             this.tabPage_Add.ResumeLayout(false);
             this.tabPage_Add.PerformLayout();
             this.panel_Result.ResumeLayout(false);
@@ -737,6 +752,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn width;
         private System.Windows.Forms.DataGridViewTextBoxColumn Depth;
         private System.Windows.Forms.DataGridViewTextBoxColumn weight;
+        private System.Windows.Forms.Label labelRowsCount;
     }
 }
 

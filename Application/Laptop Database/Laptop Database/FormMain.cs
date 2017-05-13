@@ -327,9 +327,9 @@ namespace Laptop_Database
 
         #endregion Tabs (Main menu buttons and their hovers, clicks and more)
 
-        #region Search tab (Coloring, Formating)
+        #region Search tab (Coloring, Formating, Number of rows)
 
-        #region Inconsistency (Coloring)
+        #region Inconsistency (Coloring) and Show number of rows
 
         private Color inconsistentRow = Color.FromArgb(240, 240, 240);
         private Color inconsistentCell = Color.FromArgb(255, 172, 172);
@@ -341,6 +341,7 @@ namespace Laptop_Database
         /// <param name="e"></param>
         private void DataGridView_Search_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            // Coloring
             DataGridView grid = (DataGridView)sender;
             foreach (DataGridViewRow dgvr in grid.Rows)
             {
@@ -358,6 +359,9 @@ namespace Laptop_Database
                     }
                 }
             }
+
+            // Show number of loaded rows
+            labelRowsCount.Text = grid.Rows.Count.ToString();
         }
         #endregion Inconsistency (Coloring)
 
