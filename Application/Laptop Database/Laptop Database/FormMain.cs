@@ -473,15 +473,21 @@ namespace Laptop_Database
             {
                 if (rows >= 2)  // For two and more rows
                 {
-                    label_NumberOfAdded.Text = "Added " + rows + " new rows with " + inconsistencies + " inconsistencies.";
+                    string text = "Added " + rows + " new rows with " + inconsistencies + " inconsistencies.";
+                    label_NumberOfAdded.Text = text;
+                    Notification_Balloon(text);
                 }
                 else if (rows == 1)  // For one row
                 {
-                    label_NumberOfAdded.Text = "Added " + rows + " new rows with " + inconsistencies + " inconsistency.";
+                    string text = "Added " + rows + " new rows with " + inconsistencies + " inconsistency.";
+                    label_NumberOfAdded.Text = text;
+                    Notification_Balloon(text);
                 }
                 else  // For zero rows
                 {
-                    label_NumberOfAdded.Text = "No rows added (rows are same, or there are no rows).";
+                    string text = "No rows added (rows are same, or there are no rows).";
+                    label_NumberOfAdded.Text = text;
+                    Notification_Balloon(text);
                 }
             }
 
@@ -490,15 +496,21 @@ namespace Laptop_Database
             {
                 if (rows >= 2)  // For two and more rows
                 {
-                    label_NumberOfAdded.Text = "Added " + rows + " new rows with no inconsistency.";
+                    string text = "Added " + rows + " new rows with no inconsistency.";
+                    label_NumberOfAdded.Text = text;
+                    Notification_Balloon(text);
                 }
                 else if (rows == 1)  // For one row
                 {
-                    label_NumberOfAdded.Text = "Added " + rows + " new row with no inconsistency.";
+                    string text = "Added " + rows + " new row with no inconsistency.";
+                    label_NumberOfAdded.Text = text;
+                    Notification_Balloon(text);
                 }
                 else  // For zero rows
                 {
-                    label_NumberOfAdded.Text = "No rows added (rows are same, or there are no rows).";
+                    string text = "No rows added (rows are same, or there are no rows).";
+                    label_NumberOfAdded.Text = text;
+                    Notification_Balloon(text);
                 }
             }
         }
