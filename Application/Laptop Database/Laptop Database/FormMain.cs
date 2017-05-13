@@ -65,8 +65,15 @@ namespace Laptop_Database
         /// <param name="e"></param>
         private void CustomFilter_Click(object sender, EventArgs e)
         {
-            FormFilter formFilter = new FormFilter(this);
-            formFilter.Show();
+            try
+            {
+                FormFilter formFilter = new FormFilter(this);
+                formFilter.Show();
+            }
+            catch
+            {
+                Notification_Balloon("Database is empty, please fill data before filtering");
+            }
         }
 
         /// <summary>
