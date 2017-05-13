@@ -14,7 +14,7 @@ namespace Laptop_Database.Hardware
         public RAM(String type, double frequency, int size)
         {
             this.type = type;
-            this.frequency = frequency;
+            this.frequency = 1000 * frequency;
             this.size = size;
         }
     }
