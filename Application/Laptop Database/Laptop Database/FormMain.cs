@@ -490,6 +490,108 @@ namespace Laptop_Database
 
         #endregion Add (Drag&Drop, AddedRows)
 
+        #region Notifications (Balloon)
+
+        /// <summary>
+        /// Popup balloon notification (Windows 10 only)
+        /// </summary>
+        /// <param name="text">Text in notification</param>
+        public void Notification_Balloon(string text)
+        {
+            NotifyIcon balloon = new NotifyIcon();
+            balloon.Icon = SystemIcons.Application;
+            balloon.Visible = true;
+            balloon.ShowBalloonTip(3000, "", text, ToolTipIcon.Info);
+            balloon.Dispose();
+        }
+
+        /// <summary>
+        /// Popup balloon notification (Windows 10 only)
+        /// </summary>
+        /// <param name="title">Title of notification</param>
+        /// <param name="text">Text in notification</param>
+        /// <param name="icon">Icon in notification</param>
+        public void Notification_Balloon(string text, Icon icon)
+        {
+            NotifyIcon balloon = new NotifyIcon()
+            {
+                Icon = icon,
+                Visible = true
+            };
+            balloon.ShowBalloonTip(3000, "", text, ToolTipIcon.None);
+            balloon.Dispose();
+        }
+
+        /// <summary>
+        /// Popup balloon notification (Windows 10 only)
+        /// </summary>
+        /// <param name="title">Title of notification</param>
+        /// <param name="text">Text in notification</param>
+        public void Notification_Balloon(string title, string text)
+        {
+            NotifyIcon balloon = new NotifyIcon()
+            {
+                Icon = SystemIcons.Application,
+                Visible = true
+            };
+            balloon.ShowBalloonTip(3000, title, text, ToolTipIcon.Info);
+            balloon.Dispose();
+        }
+
+        /// <summary>
+        /// Popup balloon notification (Windows 10 only)
+        /// </summary>
+        /// <param name="title">Title of notification</param>
+        /// <param name="text">Text in notification</param>
+        /// <param name="showTime">How long will be notification visible</param>
+        public void Notification_Balloon(string title, string text, int showTime)
+        {
+            NotifyIcon balloon = new NotifyIcon()
+            {
+                Icon = SystemIcons.Application,
+                Visible = true
+            };
+            balloon.ShowBalloonTip(showTime, title, text, ToolTipIcon.Info);
+            balloon.Dispose();
+        }
+
+        /// <summary>
+        /// Popup balloon notification (Windows 10 only)
+        /// </summary>
+        /// <param name="title">Title of notification</param>
+        /// <param name="text">Text in notification</param>
+        /// <param name="icon">Icon in notification</param>
+        public void Notification_Balloon(string title, string text, Icon icon)
+        {
+            NotifyIcon balloon = new NotifyIcon()
+            {
+                Icon = icon,
+                Visible = true
+            };
+            balloon.ShowBalloonTip(3000, title, text, ToolTipIcon.None);
+            balloon.Dispose();
+        }
+
+        /// <summary>
+        /// Popup balloon notification (Windows 10 only)
+        /// </summary>
+        /// <param name="title">Title of notification</param>
+        /// <param name="text">Text in notification</param>
+        /// <param name="showTime">How long will be notification visible</param>
+        /// <param name="icon">Icon in notification</param>
+        public void Notification_Balloon(string title, string text, int showTime, Icon icon)
+        {
+            NotifyIcon balloon = new NotifyIcon()
+            {
+                Icon = icon,
+                Visible = true
+            };
+            balloon.ShowBalloonTip(showTime, title, text, ToolTipIcon.Info);
+            balloon.Dispose();
+        }
+
+        #endregion Notifications
+
         #endregion
 
     }
