@@ -1,4 +1,4 @@
-# Desktop laptop database for eshop.
+# Laptop database for eshop
 
 ## Screenshots:
 ![](Presentation/Screens/Search.PNG "Screenshot of client")
